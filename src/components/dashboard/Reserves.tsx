@@ -3,6 +3,7 @@ import parser from '../../utils/GroStatsParser';
 import reserves from '../../data/reserves';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
+import { IReserve } from "../../interfaces/Dashboard";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -20,22 +21,21 @@ const useStyles = makeStyles({
     },
 });
 
-let rows: { key: string, kpi: string; vault_name: string, reserve_name: string, now: any; _5m: any; _5m_dif: any; _1h: any; _1h_dif: any; _1d: any; _1d_dif: any; _1w: any; _1w_dif: any; format: string; }[] = [];
-
-const calcVaults = () => {
-    for (const item of reserves) {
-        rows.push(
-            parser(item, 'amount', 'amount', 'amount'),
-            parser(item, 'share', 'share', 'percentage'),
-            parser(item, 'last3d_apy', 'last3d_apy', 'percentage'),
-        )
-    }
-}
-
-calcVaults();
-
 const Reserves = () => {
     const classes = useStyles();
+    const [rows, setRows] = React.useState<IReserve[]>([]);
+
+    React.useEffect(() => {
+        const tempRows = [];
+        for (const item of reserves) {
+            tempRows.push(
+                parser(item, 'amount', 'amount', 'amount'),
+                parser(item, 'share', 'share', 'percentage'),
+            );
+        }
+        setRows(tempRows);
+    }, []);
+
     return (
         <div className={styles.table}>
             <div className={styles.title}> Reserves </div>
@@ -44,6 +44,7 @@ const Reserves = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell>Vault</TableCell>
+                            <TableCell>Reserve</TableCell>
                             <TableCell>KPI</TableCell>
                             {showHeaders()}
                         </TableRow>

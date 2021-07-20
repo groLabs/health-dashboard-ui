@@ -1,8 +1,9 @@
 import React from "react";
 import parser from '../../utils/GroStatsParser';
-import protocols from '../../data/protocols';
+import stables from '../../data/stables';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
+import { IExposure } from "../../interfaces/Dashboard";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -20,20 +21,20 @@ const useStyles = makeStyles({
     },
 });
 
-let rows: { key: string, kpi: string; name: string, now: any; _5m: any; _5m_dif: any; _1h: any; _1h_dif: any; _1d: any; _1d_dif: any; _1w: any; _1w_dif: any; format: string; }[] = [];
-
-const calcVaults = () => {
-    for (const item of protocols) {
-        rows.push(
-            parser(item, 'concentration', 'concentration', 'percentage'),
-        )
-    }
-}
-
-calcVaults();
-
 const ExposureStables = () => {
     const classes = useStyles();
+    const [rows, setRows] = React.useState<IExposure[]>([]);
+
+    React.useEffect(() => {
+        const tempRows = [];
+        for (const item of stables) {
+            tempRows.push(
+                parser(item, 'concentration', 'concentration', 'percentage'),
+            );
+        }
+        setRows(tempRows);
+    }, []);
+
     return (
         <div className={styles.table}>
             <div className={styles.title}> Exposure Stablecoins </div>

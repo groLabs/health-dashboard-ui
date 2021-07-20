@@ -18,14 +18,14 @@ export const showHeaders = () => (
 
 export const showRows = (row: any) => (
     < React.Fragment >
-        <TableCell align="right">{format(row.now, row.format)}</TableCell>
-        <TableCell align="right">{format(row._5m, row.format)}</TableCell>
-        <TableCell align="right">{format(row._5m_dif, row.format)}</TableCell>
-        <TableCell align="right">{format(row._1h, row.format)}</TableCell>
-        <TableCell align="right">{format(row._1h_dif, row.format)}</TableCell>
-        <TableCell align="right">{format(row._1d, row.format)}</TableCell>
-        <TableCell align="right">{format(row._1d_dif, row.format)}</TableCell>
-        <TableCell align="right">{format(row._1w, row.format)}</TableCell>
-        <TableCell align="right">{format(row._1w_dif, row.format)}</TableCell>
+        <TableCell align="right" style={{fontWeight:'bold'}}>{format(row.now, row.format, false)}</TableCell>
+        <TableCell align="right">{format(row._5m, row.format, false)}</TableCell>
+        <TableCell align="right" style={{fontWeight:'lighter'}}>{format(row._5m_dif, row.format, true)}</TableCell>
+        <TableCell align="right">{format(row._1h, row.format, false)}</TableCell>
+        <TableCell align="right" style={{fontWeight:'lighter'}}>{format(row._1h_dif, row.format, true)}</TableCell>
+        <TableCell align="right">{format(row._1d, row.format, false)}</TableCell>
+        <TableCell align="right" style={{fontWeight:'lighter'}}>{format(row._1d_dif, row.format, true)}</TableCell>
+        <TableCell align="right">{format(row._1w, row.format, false)}</TableCell>
+        <TableCell align="right" style={{fontWeight:'lighter'}}>{format(row._1w_dif, row.format, true)}</TableCell>
     </React.Fragment>
 );

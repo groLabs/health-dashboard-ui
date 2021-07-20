@@ -3,6 +3,7 @@ import parser from '../../utils/GroStatsParser';
 import strategies from '../../data/strategies';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
+import { IStrategy } from "../../interfaces/Dashboard";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -20,22 +21,21 @@ const useStyles = makeStyles({
     },
 });
 
-let rows: { key: string, kpi: string; vault_name: string, strategy_name: string, now: any; _5m: any; _5m_dif: any; _1h: any; _1h_dif: any; _1d: any; _1d_dif: any; _1w: any; _1w_dif: any; format: string; }[] = [];
-
-const calcStrategies = () => {
-    for (const item of strategies) {
-        rows.push(
-            parser(item, 'amount', 'amount', 'amount'),
-            parser(item, 'share', 'share', 'percentage'),
-            parser(item, 'last3d_apy', 'last3d_apy', 'percentage'),
-        )
-    };
-}
-
-calcStrategies();
-
 const Strategies = () => {
     const classes = useStyles();
+    const [rows, setRows] = React.useState<IStrategy[]>([]);
+
+    React.useEffect(() => {
+        const tempRows = [];
+        for (const item of strategies) {
+            tempRows.push(
+                parser(item, 'amount', 'amount', 'amount'),
+                parser(item, 'share', 'share', 'percentage'),
+                parser(item, 'last3d_apy', 'last3d_apy', 'percentage'),
+            );
+        }
+        setRows(tempRows);
+    }, []);
 
     return (
         <div className={styles.table}>

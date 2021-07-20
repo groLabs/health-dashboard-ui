@@ -4,6 +4,7 @@ import system from '../../data/system';
 import lifeguard from '../../data/lifeguard';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
+import { IDefault } from "../../interfaces/Dashboard";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -21,17 +22,21 @@ const useStyles = makeStyles({
     },
 });
 
-const rows = [
-    parser(system, 'total_amount', 'system - amount', 'amount'),
-    parser(system, 'total_share', 'system - share', 'percentage'),
-    parser(system, 'last3d_apy', 'system - last 3d APY', 'percentage'),
-    parser(lifeguard, 'amount', 'lifeguard - amount', 'amount'),
-    parser(lifeguard, 'share', 'lifeguard - share', 'percentage'),
-    parser(lifeguard, 'last3d_apy', 'lifeguard - last 3d APY', 'percentage'),
-];
-
 const System = () => {
     const classes = useStyles();
+    const [rows, setRows] = React.useState<IDefault[]>([]);
+
+    React.useEffect(() => {
+        const tempRows = [
+            parser(system, 'total_amount', 'system - amount', 'amount'),
+            parser(system, 'total_share', 'system - share', 'percentage'),
+            parser(system, 'last3d_apy', 'system - last 3d APY', 'percentage'),
+            parser(lifeguard, 'amount', 'lifeguard - amount', 'amount'),
+            parser(lifeguard, 'share', 'lifeguard - share', 'percentage'),
+            parser(lifeguard, 'last3d_apy', 'lifeguard - last 3d APY', 'percentage'),
+        ];
+        setRows(tempRows);
+    }, []);
 
     return (
         <div className={styles.table}>

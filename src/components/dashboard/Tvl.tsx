@@ -12,6 +12,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { IDefault } from "../../interfaces/Dashboard";
 
 
 const useStyles = makeStyles({
@@ -20,17 +21,21 @@ const useStyles = makeStyles({
     },
 });
 
-const rows = [
-    parser(tvl, 'tvl_pwrd', 'pwrd', 'amount'),
-    parser(tvl, 'tvl_gvt', 'gvt', 'amount'),
-    parser(tvl, 'tvl_total', 'total', 'amount'),
-    parser(tvl, 'util_ratio_limit_pwrd', 'util ratio pwrd', 'percentage'),
-    parser(tvl, 'util_ratio_limit_gvt', 'util ratio gvt', 'percentage'),
-    parser(tvl, 'util_ratio', 'util ratio total', 'percentage'),
-];
-
 const Tvl = () => {
     const classes = useStyles();
+    const [rows, setRows] = React.useState<IDefault[]>([]);
+
+    React.useEffect(() => {
+        const tempRows = [
+            parser(tvl, 'tvl_pwrd', 'pwrd', 'amount'),
+            parser(tvl, 'tvl_gvt', 'gvt', 'amount'),
+            parser(tvl, 'tvl_total', 'total', 'amount'),
+            parser(tvl, 'util_ratio_limit_pwrd', 'util ratio limit pwrd', 'percentage'),
+            parser(tvl, 'util_ratio_limit_gvt', 'util ratio limit gvt', 'percentage'),
+            parser(tvl, 'util_ratio', 'util ratio total', 'percentage'),
+        ];
+        setRows(tempRows);
+    }, []);
 
     return (
         <div className={styles.table}>
