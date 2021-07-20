@@ -4,3 +4,11 @@
     flex-direction: row;
     justify-content: center;
 }
+.title {
+    margin: 0 0 10px 5px;
+    font-size: large;
+    font-weight: 600;
+}
+.table {
+    margin: 15px 15px 45px 15px;
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import parser from '../../utils/GroStatsParser';
-import tvl from '../../data/tvl';
+import strategies from '../../data/strategies';
+import reserves from '../../data/reserves';
 import styles from './Dashboard.module.css';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -19,26 +20,46 @@ const useStyles = makeStyles({
     },
 });
 
-const rows = [
-    parser(tvl, 'tvl_pwrd', 'pwrd', 'amount'),
-    parser(tvl, 'tvl_gvt', 'gvt', 'amount'),
-    parser(tvl, 'tvl_total', 'total', 'amount'),
-    parser(tvl, 'util_ratio_limit_pwrd', 'util ratio pwrd', 'percentage'),
-    parser(tvl, 'util_ratio_limit_gvt', 'util ratio gvt', 'percentage'),
-    parser(tvl, 'util_ratio', 'util ratio total', 'percentage'),
-];
+let rows: { kpi: string; vault_name: string, strategy_name: string, now: any; _5m: any; _5m_dif: any; _1h: any; _1h_dif: any; _1d: any; _1d_dif: any; _1w: any; _1w_dif: any; format: string; }[] = [];
 
-const Tvl = () => {
+const calcStrategies = () => {
+    for (const item of strategies) {
+        rows.push(
+            parser(item, 'amount', 'amount', 'amount'),
+            parser(item, 'share', 'share', 'percentage'),
+            parser(item, 'last3d_apy', 'last3d_apy', 'percentage'),
+        )
+    };
+    // for (const strategy of strategies) {
+    //     for (const reserve of reserves) {
+    //         if (reserve.vault_name === strategy.vault_name)
+    //             rows.push(
+    //                 parser(strategy, 'amount', 'amount', 'amount'),
+    //                 parser(strategy, 'share', 'share', 'percentage'),
+    //                 parser(strategy, 'last3d_apy', 'last3d_apy', 'percentage'),
+    //             );
+    //     }
+
+    // };
+}
+
+calcStrategies();
+
+console.log(rows);
+
+const Strategies = () => {
     const classes = useStyles();
 
     return (
         <div className={styles.table}>
-            <div className={styles.title}> TVL </div>
+            <div className={styles.title}> Strategies </div>
             <TableContainer component={Paper}>
                 <Table className={classes.table} size="small" aria-label="a dense table">
                     <TableHead>
                         <TableRow>
-                            <TableCell></TableCell>
+                            <TableCell>Vault</TableCell>
+                            <TableCell>Strategy</TableCell>
+                            <TableCell>KPI</TableCell>
                             <TableCell align="right">Now</TableCell>
                             <TableCell align="right">5m</TableCell>
                             <TableCell align="right">Δ 5m</TableCell>
@@ -53,7 +74,9 @@ const Tvl = () => {
                     <TableBody>
                         {rows.map((row) => (
                             <TableRow key={row.kpi}>
-                                <TableCell component="th" scope="row"> {row.kpi}</TableCell>
+                                <TableCell component="td" scope="row"> {row.vault_name}</TableCell>
+                                <TableCell component="td" scope="row"> {row.strategy_name}</TableCell>
+                                <TableCell component="td" scope="row"> {row.kpi}</TableCell>
                                 <TableCell align="right">{format(row.now, row.format)}</TableCell>
                                 <TableCell align="right">{format(row._5m, row.format)}</TableCell>
                                 <TableCell align="right">{format(row._5m_dif, row.format)}</TableCell>
@@ -69,8 +92,7 @@ const Tvl = () => {
                 </Table>
             </TableContainer>
         </div>
-
     );
 }
 
-export default Tvl;
+export default Strategies;
