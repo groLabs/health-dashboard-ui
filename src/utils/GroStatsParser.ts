@@ -1,8 +1,8 @@
-// import { format } from "path";
-
+import { v4 as uuidv4 } from 'uuid';
 
 const GroStatsParser = (data: any, kpi: string, displayName: string, format: string) => {
     return {
+        'key': uuidv4(),
         'kpi': displayName,
         ...(data['vault_name']) && { 'vault_name': data['vault_name'] },
         ...(data['strategy_name']) && { 'strategy_name': data['strategy_name'] },
