@@ -1,0 +1,38 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: sticky;   /* fixed header */
+    top: 0;             /* fixed header */
+    background-color: white;
+}
+
+.header {
+    margin: 10px;
+    font-size:larger;
+    font-weight:bold;
+    color: #9D3BE8;
+}
+
+.container_horizontal {
+    display: flex;
+    flex-direction:row;
+    margin-bottom: 10px;
+}
+
+.subheader {
+    margin: 0 20px 0 20px;
+    font-size: small;
+}
+
+.title {
+    margin: 0 0 10px 5px;
+    font-size: large;
+    font-weight: 600;
+}
+
+.table {
+    margin: 15px 15px 45px 15px;
+}
