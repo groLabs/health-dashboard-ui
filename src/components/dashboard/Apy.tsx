@@ -1,12 +1,12 @@
 import React from "react";
 import parser from '../../utils/GroStatsParser';
-import apy1 from '../../data/apy1';
-import apy2 from '../../data/apy2';
+//import apy1 from '../../data/apy1';
+//import apy2 from '../../data/apy2';
 import system from '../../data/system';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
 import { IDefault } from "../../interfaces/Dashboard";
-
+import { useTypedSelector } from '../../store/reducers/reducer';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -26,6 +26,8 @@ const useStyles = makeStyles({
 
 const Apy = () => {
     const classes = useStyles();
+    const apy1 = useTypedSelector(state => state.groStats.apy1);
+    const apy2 = useTypedSelector(state => state.groStats.apy2);
     const [rows, setRows] = React.useState<IDefault[]>([]);
 
     React.useEffect(() => {
@@ -45,7 +47,7 @@ const Apy = () => {
             parser(system, 'hodl_bonus', 'HODL bonus', 'percentage'),
         ];
         setRows(tempRows);
-    }, []);
+    }, [apy1, apy2]);
 
     return (
         <div className={styles.table}>

@@ -1,9 +1,10 @@
 import React from "react";
 import parser from '../../utils/GroStatsParser';
-import strategies from '../../data/strategies';
+// import strategies from '../../data/strategies';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
 import { IStrategy } from "../../interfaces/Dashboard";
+import { useTypedSelector } from '../../store/reducers/reducer';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -23,6 +24,7 @@ const useStyles = makeStyles({
 
 const Strategies = () => {
     const classes = useStyles();
+    const strategies = useTypedSelector(state => state.groStats.strategies);
     const [rows, setRows] = React.useState<IStrategy[]>([]);
 
     React.useEffect(() => {
@@ -35,7 +37,7 @@ const Strategies = () => {
             );
         }
         setRows(tempRows);
-    }, []);
+    }, [strategies]);
 
     return (
         <div className={styles.table}>

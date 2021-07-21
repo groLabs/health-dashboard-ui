@@ -1,9 +1,10 @@
 import React from "react";
 import parser from '../../utils/GroStatsParser';
-import reserves from '../../data/reserves';
+// import reserves from '../../data/reserves';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
 import { IReserve } from "../../interfaces/Dashboard";
+import { useTypedSelector } from '../../store/reducers/reducer';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -23,6 +24,7 @@ const useStyles = makeStyles({
 
 const Reserves = () => {
     const classes = useStyles();
+    const reserves = useTypedSelector(state => state.groStats.reserves);
     const [rows, setRows] = React.useState<IReserve[]>([]);
 
     React.useEffect(() => {
@@ -34,7 +36,7 @@ const Reserves = () => {
             );
         }
         setRows(tempRows);
-    }, []);
+    }, [reserves]);
 
     return (
         <div className={styles.table}>

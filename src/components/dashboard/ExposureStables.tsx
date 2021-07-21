@@ -1,9 +1,10 @@
 import React from "react";
 import parser from '../../utils/GroStatsParser';
-import stables from '../../data/stables';
+// import stables from '../../data/stables';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
 import { IExposure } from "../../interfaces/Dashboard";
+import { useTypedSelector } from '../../store/reducers/reducer';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -23,6 +24,7 @@ const useStyles = makeStyles({
 
 const ExposureStables = () => {
     const classes = useStyles();
+    const stables = useTypedSelector(state => state.groStats.exposureStables);
     const [rows, setRows] = React.useState<IExposure[]>([]);
 
     React.useEffect(() => {
@@ -33,7 +35,7 @@ const ExposureStables = () => {
             );
         }
         setRows(tempRows);
-    }, []);
+    }, [stables]);
 
     return (
         <div className={styles.table}>

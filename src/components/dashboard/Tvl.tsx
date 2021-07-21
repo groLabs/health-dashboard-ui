@@ -1,8 +1,9 @@
 import React from "react";
 import parser from '../../utils/GroStatsParser';
-import tvl from '../../data/tvl';
+// import tvl from '../../data/tvl';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
+import { useTypedSelector } from '../../store/reducers/reducer';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -23,6 +24,7 @@ const useStyles = makeStyles({
 
 const Tvl = () => {
     const classes = useStyles();
+    const tvl = useTypedSelector(state => state.groStats.tvl);
     const [rows, setRows] = React.useState<IDefault[]>([]);
 
     React.useEffect(() => {
@@ -35,7 +37,7 @@ const Tvl = () => {
             parser(tvl, 'util_ratio', 'util ratio total', 'percentage'),
         ];
         setRows(tempRows);
-    }, []);
+    }, [tvl]);
 
     return (
         <div className={styles.table}>

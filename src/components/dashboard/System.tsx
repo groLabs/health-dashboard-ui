@@ -1,10 +1,11 @@
 import React from "react";
 import parser from '../../utils/GroStatsParser';
-import system from '../../data/system';
+// import system from '../../data/system';
 import lifeguard from '../../data/lifeguard';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
 import { IDefault } from "../../interfaces/Dashboard";
+import { useTypedSelector } from '../../store/reducers/reducer';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -24,6 +25,7 @@ const useStyles = makeStyles({
 
 const System = () => {
     const classes = useStyles();
+    const system = useTypedSelector(state => state.groStats.system);
     const [rows, setRows] = React.useState<IDefault[]>([]);
 
     React.useEffect(() => {
@@ -36,7 +38,7 @@ const System = () => {
             parser(lifeguard, 'last3d_apy', 'lifeguard - last 3d APY', 'percentage'),
         ];
         setRows(tempRows);
-    }, []);
+    }, [system]);
 
     return (
         <div className={styles.table}>

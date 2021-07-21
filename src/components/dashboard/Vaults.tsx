@@ -1,9 +1,10 @@
 import React from "react";
 import parser from '../../utils/GroStatsParser';
-import vaults from '../../data/vaults';
+// import vaults from '../../data/vaults';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
 import { IVault } from "../../interfaces/Dashboard";
+import { useTypedSelector } from '../../store/reducers/reducer';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -23,6 +24,7 @@ const useStyles = makeStyles({
 
 const Vaults = () => {
     const classes = useStyles();
+    const vaults = useTypedSelector(state => state.groStats.vaults);
     const [rows, setRows] = React.useState<IVault[]>([]);
 
     React.useEffect(() => {
@@ -35,7 +37,7 @@ const Vaults = () => {
             );
         }
         setRows(tempRows);
-    }, []);
+    }, [vaults]);
 
     return (
         <div className={styles.table}>

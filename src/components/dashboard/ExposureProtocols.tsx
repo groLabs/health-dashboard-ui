@@ -1,9 +1,10 @@
 import React from "react";
 import parser from '../../utils/GroStatsParser';
-import protocols from '../../data/protocols';
+// import protocols from '../../data/protocols';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
 import { IExposure } from "../../interfaces/Dashboard";
+import { useTypedSelector } from '../../store/reducers/reducer';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -23,17 +24,19 @@ const useStyles = makeStyles({
 
 const ExposureProtocols = () => {
     const classes = useStyles();
+    const protocols = useTypedSelector(state => state.groStats.exposureProtocols);
     const [rows, setRows] = React.useState<IExposure[]>([]);
 
     React.useEffect(() => {
         const tempRows = [];
+        console.log('protocols', protocols)
         for (const item of protocols) {
             tempRows.push(
                 parser(item, 'concentration', 'concentration', 'percentage'),
             );
         }
         setRows(tempRows);
-    }, []);
+    }, [protocols]);
 
     return (
         <div className={styles.table}>

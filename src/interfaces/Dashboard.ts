@@ -80,3 +80,8 @@ export interface IVault {
     format: string;  
 }
 
+export interface IGroStats {
+    tvl: {
+        
+    }
+}

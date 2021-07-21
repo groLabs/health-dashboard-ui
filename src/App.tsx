@@ -5,7 +5,7 @@ import Dashboard from './components/dashboard/Dashboard';
 
 // Set global state variables through Redux
 const rootReducer = combineReducers({
-  wallet: dashboardReducer,
+  groStats: dashboardReducer,
 });
 const store = createStore(rootReducer);
 

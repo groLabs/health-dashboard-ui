@@ -12,13 +12,13 @@ import ExposureProtocols from "./ExposureProtocols";
 
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../store/reducers/reducer';
-import { setChainId } from '../../store/action/dashboard';
+import { setTvl, setAllGroStats } from '../../store/action/dashboard';
 
 
 
 const Dashboard = () => {
     const dispatch = useDispatch();
-    const wallet = useTypedSelector(state => state.wallet);
+    const groStats = useTypedSelector(state => state.groStats);
     const URL = 'http://localhost:3001/database/gro_stats';
 
     React.useEffect(() => {
@@ -30,15 +30,31 @@ const Dashboard = () => {
             params: { network: 'ropsten' },
         }).then(res => {
             console.log('data!', res.data);
-            dispatch(setChainId(18));
+            // dispatch(setTvl(res.data.tvl));
+            dispatch(setAllGroStats({
+                tvl: res.data.tvl,
+                apy1: res.data.apy1,
+                apy2: res.data.apy2,
+                lifeguard: res.data.lifeguard,
+                system: res.data.system,
+                vaults: res.data.vaults,
+                reserves: res.data.reserves,
+                strategies: res.data.strategies,
+                exposureStables: res.data.exposureStables,
+                exposureProtocols: res.data.exposureProtocols,
+            }))
         }).catch(err => {
             console.log('Error in Dashboard.tsx -> fetchGroStats(): ', err);
         });
     };
 
+    // React.useEffect(() => {
+    //     console.log('use effect:', groStats)
+    // }, [groStats])
+
     return (
         <div>
-            <div> wallet: {wallet.chainId} </div>
+            {/* <div> stat: {(groStats) ? groStats.tvl.current_timestamp : ''} </div> */}
             <Header />
             <Tvl />
             <Apy />
