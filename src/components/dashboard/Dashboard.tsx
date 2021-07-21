@@ -11,11 +11,12 @@ import ExposureStables from "./ExposureStables";
 import ExposureProtocols from "./ExposureProtocols";
 import { useDispatch } from 'react-redux';
 import { setAllGroStats } from '../../store/action/dashboard';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import styles from './Dashboard.module.css';
+require('dotenv').config();
 
-
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         root: {
             // Improve scrollable dialog support.
@@ -35,8 +36,11 @@ const useStyles = makeStyles((theme: Theme) =>
 const Dashboard = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const [isLoading, setIsLoading] = React.useState<boolean>(false)
-    const URL = 'http://localhost:3001/database/gro_stats';
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const [isError, setIsError] = React.useState<String>('');
+    // const URL = 'http://localhost:3001/database/gro_stats';
+    const URL = `${process.env.REACT_APP_STATS_BOT_URL}:${process.env.REACT_APP_STATS_BOT_PORT}/database/gro_stats`;
+    console.log('url', URL);
 
     React.useEffect(() => {
         fetchGroStats();
@@ -45,6 +49,8 @@ const Dashboard = () => {
 
     const fetchGroStats = async () => {
         setIsLoading(true);
+        setIsError('');
+        // TODO: call Remove function
         dispatch(setAllGroStats({
             tvl: {},
             apy1: {},
@@ -77,6 +83,7 @@ const Dashboard = () => {
             }));
         }).catch(err => {
             console.log('Error in Dashboard.tsx -> fetchGroStats(): ', err);
+            setIsError(`Error fetching gro stats from DB: ${err}`);
         }).finally(() => {
             setIsLoading(false);
         });
@@ -84,14 +91,18 @@ const Dashboard = () => {
 
     return (
         <div>
-
             <Header onRefreshClick={() => fetchGroStats()} />
-            {(isLoading)
-                ? <span className={classes.root}>
-                    <CircularProgress />
+            {(isError !== '')
+                ? <span className={styles.container + ' ' + styles.error}>
+                    {isError}
                 </span>
+                : ''
+            }
+            {(isLoading)
+                ? <div className={classes.root}>
+                    <CircularProgress />
+                </div>
                 : ''}
-
             <Tvl />
             <Apy />
             <System />

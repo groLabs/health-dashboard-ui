@@ -12,3 +12,6 @@
 .table {
     margin: 15px 15px 45px 15px;
 }
+.error {
+    color: red;
+}
