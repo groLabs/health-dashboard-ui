@@ -9,6 +9,7 @@ import Strategies from "./Strategies";
 import Reserves from "./Reserves";
 import ExposureStables from "./ExposureStables";
 import ExposureProtocols from "./ExposureProtocols";
+import getNetworkId from '../../utils/getNetworkId';
 import { useDispatch } from 'react-redux';
 import { setAllGroStats } from '../../store/action/dashboard';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
@@ -38,9 +39,10 @@ const Dashboard = () => {
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [isError, setIsError] = React.useState<String>('');
-    // const URL = 'http://localhost:3001/database/gro_stats';
     const URL = `${process.env.REACT_APP_STATS_BOT_URL}:${process.env.REACT_APP_STATS_BOT_PORT}/database/gro_stats`;
-    console.log('url', URL);
+    const networkId = (process.env.REACT_APP_NETWORK_ID)
+        ? parseInt(process.env.REACT_APP_NETWORK_ID)
+        : 0;
 
     React.useEffect(() => {
         fetchGroStats();
@@ -64,30 +66,36 @@ const Dashboard = () => {
             exposureProtocols: [],
             config: {},
         }));
-        await axios.get(URL, {
-            params: { network: 'ropsten' },
-        }).then(res => {
-            console.log('data successfully retrieved from API', res.data);
-            dispatch(setAllGroStats({
-                tvl: res.data.tvl,
-                apy1: res.data.apy1,
-                apy2: res.data.apy2,
-                lifeguard: res.data.lifeguard,
-                system: res.data.system,
-                vaults: res.data.vaults,
-                reserves: res.data.reserves,
-                strategies: res.data.strategies,
-                exposureStables: res.data.exposureStables,
-                exposureProtocols: res.data.exposureProtocols,
-                config: res.data.config,
-            }));
-        }).catch(err => {
-            console.log('Error in Dashboard.tsx -> fetchGroStats(): ', err);
-            setIsError(`Error fetching gro stats from DB: ${err}`);
-        }).finally(() => {
+
+        if (networkId === 0) {
+            setIsError(`Error reading blockchain network (id:${networkId}) => .env entry might be missing`);
             setIsLoading(false);
-        });
-    };
+        } else {
+            await axios.get(URL, {
+                params: { network: getNetworkId(networkId)},
+            }).then(res => {
+                console.log('data successfully retrieved from API', res.data);
+                dispatch(setAllGroStats({
+                    tvl: res.data.tvl,
+                    apy1: res.data.apy1,
+                    apy2: res.data.apy2,
+                    lifeguard: res.data.lifeguard,
+                    system: res.data.system,
+                    vaults: res.data.vaults,
+                    reserves: res.data.reserves,
+                    strategies: res.data.strategies,
+                    exposureStables: res.data.exposureStables,
+                    exposureProtocols: res.data.exposureProtocols,
+                    config: res.data.config,
+                }));
+            }).catch(err => {
+                console.log('Error in Dashboard.tsx -> fetchGroStats(): ', err);
+                setIsError(`Error fetching gro stats from DB: ${err}`);
+            }).finally(() => {
+                setIsLoading(false);
+            });
+        }
+    }
 
     return (
         <div>

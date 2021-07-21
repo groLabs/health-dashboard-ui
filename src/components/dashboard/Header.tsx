@@ -1,6 +1,7 @@
 import React from "react";
 import moment from 'moment';
 import styles from './Header.module.css';
+import getNetworkId from '../../utils/getNetworkId';
 import { useTypedSelector } from '../../store/reducers/reducer';
 
 interface Props {
@@ -8,19 +9,6 @@ interface Props {
 }
 const Header = (props: Props) => {
     const config = useTypedSelector(state => state.groStats.config);
-
-    const getNetworkId = (networkId: number) => {
-        try {
-            switch (networkId) {
-                case 1: return 'Mainnet';
-                case 3: return 'Ropsten';
-                case 42: return 'Kovan';
-                default: return '';
-            }
-        } catch (err) {
-            console.log(err);
-        }
-    }
 
     return (
         <div className={styles.container}>
