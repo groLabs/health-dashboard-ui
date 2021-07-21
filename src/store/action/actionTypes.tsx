@@ -1,0 +1,2 @@
+// WALLET
+export const SET_CHAINID = 'SET_CHAINID';
