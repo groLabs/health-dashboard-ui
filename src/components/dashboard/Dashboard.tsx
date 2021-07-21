@@ -11,14 +11,12 @@ import ExposureStables from "./ExposureStables";
 import ExposureProtocols from "./ExposureProtocols";
 
 import { useDispatch } from 'react-redux';
-import { useTypedSelector } from '../../store/reducers/reducer';
-import { setTvl, setAllGroStats } from '../../store/action/dashboard';
+import { setAllGroStats } from '../../store/action/dashboard';
 
 
 
 const Dashboard = () => {
     const dispatch = useDispatch();
-    const groStats = useTypedSelector(state => state.groStats);
     const URL = 'http://localhost:3001/database/gro_stats';
 
     React.useEffect(() => {
@@ -42,19 +40,15 @@ const Dashboard = () => {
                 strategies: res.data.strategies,
                 exposureStables: res.data.exposureStables,
                 exposureProtocols: res.data.exposureProtocols,
+                config: res.data.config,
             }))
         }).catch(err => {
             console.log('Error in Dashboard.tsx -> fetchGroStats(): ', err);
         });
     };
 
-    // React.useEffect(() => {
-    //     console.log('use effect:', groStats)
-    // }, [groStats])
-
     return (
         <div>
-            {/* <div> stat: {(groStats) ? groStats.tvl.current_timestamp : ''} </div> */}
             <Header />
             <Tvl />
             <Apy />

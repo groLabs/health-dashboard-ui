@@ -20,6 +20,7 @@ const initialState = {
         strategies: [],
         exposureStables: [],
         exposureProtocols: [],
+        config: {}
 }
 
 // const setTvl = (state: State, action: Action) => {
@@ -44,6 +45,7 @@ const setAllGroStats = (state: State, action: Action) => {
             strategies: action.strategies,
             exposureStables: action.exposureStables,
             exposureProtocols: action.exposureProtocols,
+            config: action.config,
         } };
     console.log('newState:', newState);
     return newState;

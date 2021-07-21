@@ -17,5 +17,6 @@ export const setAllGroStats = (groStats: any) => ({
     strategies: groStats.strategies,
     exposureStables: groStats.exposureStables,
     exposureProtocols: groStats.exposureProtocols,
+    config: groStats.config,
 });
 

@@ -20,6 +20,7 @@ export interface RootState {
         strategies: any[],
         exposureStables: any[],
         exposureProtocols: any[],
+        config: any,
     },
     // dex: {
     //     user: User,
