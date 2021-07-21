@@ -5,7 +5,7 @@ import format from '../../utils/Format';
 
 export const showHeaders = () => (
     < React.Fragment >
-        <TableCell align="right">Now</TableCell>
+        <TableCell align="right">Last</TableCell>
         <TableCell align="right">5m</TableCell>
         <TableCell align="right">Δ 5m</TableCell>
         <TableCell align="right">1h</TableCell>

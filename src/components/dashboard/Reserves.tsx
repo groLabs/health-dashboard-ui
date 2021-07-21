@@ -1,5 +1,5 @@
 import React from "react";
-import parser from '../../utils/GroStatsParser';
+import parser from '../../utils/parseGroStats';
 // import reserves from '../../data/reserves';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
