@@ -11,7 +11,7 @@ import ExposureStables from "./ExposureStables";
 import ExposureProtocols from "./ExposureProtocols";
 import getNetworkId from '../../utils/getNetworkId';
 import { useDispatch } from 'react-redux';
-import { setAllGroStats } from '../../store/action/dashboard';
+import { setAllGroStats, removeAllGroStats } from '../../store/action/dashboard';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import styles from './Dashboard.module.css';
@@ -52,29 +52,14 @@ const Dashboard = () => {
     const fetchGroStats = async () => {
         setIsLoading(true);
         setIsError('');
-        // TODO: call Remove function
-        dispatch(setAllGroStats({
-            tvl: {},
-            apy1: {},
-            apy2: {},
-            lifeguard: {},
-            system: {},
-            vaults: [],
-            reserves: [],
-            strategies: [],
-            exposureStables: [],
-            exposureProtocols: [],
-            config: {},
-        }));
-
+        dispatch(removeAllGroStats());
         if (networkId === 0) {
             setIsError(`Error reading blockchain network (id:${networkId}) => .env entry might be missing`);
             setIsLoading(false);
         } else {
             await axios.get(URL, {
-                params: { network: getNetworkId(networkId)},
+                params: { network: getNetworkId(networkId) },
             }).then(res => {
-                console.log('data successfully retrieved from API', res.data);
                 dispatch(setAllGroStats({
                     tvl: res.data.tvl,
                     apy1: res.data.apy1,

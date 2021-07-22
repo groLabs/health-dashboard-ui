@@ -1,14 +1,7 @@
 import { createSelectorHook } from 'react-redux';
-// import { Wallet } from '../../interfaces/Wallet';
-// import { User, Order, Trade } from '../../interfaces/Dex';
-
-// export interface Wallet {
-//     chainId: number,
-// };
 
 //TODO: define types!
 export interface RootState {
-    // wallet: Wallet,
     groStats: {
         tvl: any,
         apy1: any,
@@ -22,11 +15,6 @@ export interface RootState {
         exposureProtocols: any[],
         config: any,
     },
-    // dex: {
-    //     user: User,
-    //     orders: Order,
-    //     trades: Trade[],
-    // },
 };
 
 export const useTypedSelector = createSelectorHook<RootState>();

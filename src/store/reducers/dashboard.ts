@@ -23,13 +23,6 @@ const initialState = {
         config: {}
 }
 
-// const setTvl = (state: State, action: Action) => {
-//     const newVal = action.tvl;
-//     const newState = { ...state, ...{ tvl: newVal } };
-//     console.log('newState:', newState);
-//     return newState;
-// }
-
 const setAllGroStats = (state: State, action: Action) => {
     console.log('action:', action)
     const newState = { 
@@ -47,48 +40,24 @@ const setAllGroStats = (state: State, action: Action) => {
             exposureProtocols: action.exposureProtocols,
             config: action.config,
         } };
-    console.log('newState:', newState);
     return newState;
 }
 
+const removeAllGroStats = (state: State, action: Action) => {
+    state = initialState;
+    return state;
+};
+
+
 const reducer = (state = initialState, action: Action) => {
     switch (action.type) {
-        // case actionTypes.SET_TVL:
-        //     return setTvl(state, action);
         case actionTypes.SET_ALL_GRO_STATS:
             return setAllGroStats(state, action);
+        case actionTypes.REMOVE_ALL_GRO_STATS:
+            return removeAllGroStats(state, action);
         default:
             return state;
     }
 };
 
 export default reducer;
-
-// type rootState = RootState['wallet'];
-
-// interface State extends rootState { };
-// interface Action extends rootState {
-//     type: string,
-// }
-
-// const initialState = {
-//     chainId: 5,
-// }
-
-// const setChainId = (state: State, action: Action) => {
-//     return {
-//         ...state,
-//         ...{
-//             chainId: action.chainId,
-//         }
-//     };
-// }
-
-// const reducer = (state = initialState, action: Action) => {
-//     switch (action.type) {
-//         case actionTypes.SET_CHAINID: return setChainId(state, action);
-//         default: return state;
-//     }
-// };
-
-// export default reducer;

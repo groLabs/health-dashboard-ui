@@ -1,10 +1,5 @@
 import * as actionTypes from './actionTypes';
 
-export const setTvl = (tvl: any) => ({
-    type: actionTypes.SET_TVL,
-    tvl: tvl,
-});
-
 export const setAllGroStats = (groStats: any) => ({
     type: actionTypes.SET_ALL_GRO_STATS,
     tvl: groStats.tvl,
@@ -20,3 +15,6 @@ export const setAllGroStats = (groStats: any) => ({
     config: groStats.config,
 });
 
+export const removeAllGroStats = () => ({
+    type: actionTypes.REMOVE_ALL_GRO_STATS,
+});
