@@ -3,7 +3,8 @@ import NumberFormat from 'react-number-format';
 const sign = (value: number, dif: boolean) => (dif && value > 0) ? '+' : '';
 
 const Format = (rawValue: any, format: string, dif: boolean) => {
-    if (rawValue === 'NA')
+    try {
+        if (rawValue === 'NA')
         return 'NA';
     let value = parseFloat(rawValue);
     if (format === 'amount') {
@@ -13,6 +14,9 @@ const Format = (rawValue: any, format: string, dif: boolean) => {
         if (Math.abs(value) < 0.0001)
             value = 0;
         return <NumberFormat value={value * 100} displayType={'text'} prefix={sign(value, dif)} suffix={'%'} decimalScale={2} />
+    }
+    } catch (err) {
+        console.log('Error in Format.tsx:', err);
     }
 
 }

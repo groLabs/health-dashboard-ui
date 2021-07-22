@@ -29,7 +29,6 @@ const ExposureProtocols = () => {
 
     React.useEffect(() => {
         const tempRows = [];
-        console.log('protocols', protocols)
         for (const item of protocols) {
             tempRows.push(
                 parser(item, 'concentration', 'concentration', 'percentage'),

@@ -24,7 +24,6 @@ const initialState = {
 }
 
 const setAllGroStats = (state: State, action: Action) => {
-    console.log('action:', action)
     const newState = { 
         ...state, 
         ...{ 

@@ -7,7 +7,7 @@ const getNetworkId = (networkId: number) => {
             default: return '';
         }
     } catch (err) {
-        console.log(err);
+        console.log('Error in getNetworkId.ts', err);
     }
 }
 
