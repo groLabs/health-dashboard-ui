@@ -44,6 +44,8 @@ const Apy = () => {
             parser(apy2, 'apy_monthly', 'monthly - gvt', 'percentage'),
             parser(apy1, 'apy_all_time', 'all time - pwrd', 'percentage'),
             parser(apy2, 'apy_all_time', 'all time - gvt', 'percentage'),
+            parser(apy1, 'apy_current', 'current', 'percentage'),
+            parser(apy2, 'apy_current', 'current', 'percentage'),
             parser(system, 'hodl_bonus', 'HODL bonus', 'percentage'),
         ];
         setRows(tempRows);
