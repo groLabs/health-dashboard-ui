@@ -51,8 +51,8 @@ const Tvl = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.key}>
+                        {rows.map((row, index) => (
+                            <TableRow key={row.key} style ={ index % 2? { background : "#EBECF0" }:{ background : "white" }}>
                                 <TableCell component="th" scope="row"> {row.kpi}</TableCell>
                                 {showRows(row)}
                             </TableRow>

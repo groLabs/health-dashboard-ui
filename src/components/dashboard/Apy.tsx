@@ -2,7 +2,7 @@ import React from "react";
 import parser from '../../utils/parseGroStats';
 //import apy1 from '../../data/apy1';
 //import apy2 from '../../data/apy2';
-import system from '../../data/system';
+// import system from '../../data/system';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
 import { IDefault } from "../../interfaces/Dashboard";
@@ -28,6 +28,7 @@ const Apy = () => {
     const classes = useStyles();
     const apy1 = useTypedSelector(state => state.groStats.apy1);
     const apy2 = useTypedSelector(state => state.groStats.apy2);
+    const system = useTypedSelector(state => state.groStats.system);
     const [rows, setRows] = React.useState<IDefault[]>([]);
 
     React.useEffect(() => {
@@ -44,12 +45,12 @@ const Apy = () => {
             parser(apy2, 'apy_monthly', 'monthly - gvt', 'percentage'),
             parser(apy1, 'apy_all_time', 'all time - pwrd', 'percentage'),
             parser(apy2, 'apy_all_time', 'all time - gvt', 'percentage'),
-            parser(apy1, 'apy_current', 'current', 'percentage'),
-            parser(apy2, 'apy_current', 'current', 'percentage'),
+            parser(apy1, 'apy_current', 'current - pwrd', 'percentage'),
+            parser(apy2, 'apy_current', 'current - gvt', 'percentage'),
             parser(system, 'hodl_bonus', 'HODL bonus', 'percentage'),
         ];
         setRows(tempRows);
-    }, [apy1, apy2]);
+    }, [apy1, apy2, system]);
 
     return (
         <div className={styles.table}>
@@ -63,8 +64,8 @@ const Apy = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.key}>
+                        {rows.map((row, index) => (
+                            <TableRow key={row.key} style ={ index % 2? { background : "#EBECF0" }:{ background : "white" }}>
                                 <TableCell component="th" scope="row">{row.kpi}</TableCell>
                                 {showRows(row)}
                             </TableRow>

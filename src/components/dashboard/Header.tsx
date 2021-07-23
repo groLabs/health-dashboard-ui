@@ -15,7 +15,7 @@ const Header = (props: Props) => {
             <div className={styles.header}> Health Monitoring Dashboard MVP </div>
             <div className={styles.container_horizontal}>
                 <div className={styles.subheader}>
-                    Last Date: {(config.current_date) ? moment.utc(config.current_date).format('DD/MM/YYYY HH:mm:ss') : ''}
+                    Last Date: {(config.current_date) ? `${moment.utc(config.current_date).format('DD/MM/YYYY HH:mm:ss')} UTC` : ''}
                 </div>
                 <div className={styles.subheader}>
                     Last Timestamp: {config.current_timestamp}

@@ -5,15 +5,15 @@ import format from '../../utils/Format';
 
 export const showHeaders = () => (
     < React.Fragment >
-        <TableCell align="right">Last</TableCell>
-        <TableCell align="right">5m</TableCell>
-        <TableCell align="right">Δ 5m</TableCell>
-        <TableCell align="right">1h</TableCell>
-        <TableCell align="right">Δ 1h</TableCell>
-        <TableCell align="right">1d</TableCell>
-        <TableCell align="right">Δ 1d</TableCell>
-        <TableCell align="right">1w</TableCell>
-        <TableCell align="right">Δ 1w</TableCell>
+        <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>Last</TableCell>
+        <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>5m</TableCell>
+        <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>Δ 5m</TableCell>
+        <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>1h</TableCell>
+        <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>Δ 1h</TableCell>
+        <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>1d</TableCell>
+        <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>Δ 1d</TableCell>
+        <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>1w</TableCell>
+        <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>Δ 1w</TableCell>
     </React.Fragment >
 );
 

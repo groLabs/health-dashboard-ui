@@ -49,8 +49,8 @@ const ExposureProtocols = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.key}>
+                        {rows.map((row, index) => (
+                            <TableRow key={row.key} style ={ index % 2? { background : "#EBECF0" }:{ background : "white" }}>
                                 <TableCell component="td" scope="row"> {row.name}</TableCell>
                                 {showRows(row)}
                             </TableRow>
