@@ -10,6 +10,7 @@ import Reserves from "./Reserves";
 import ExposureStables from "./ExposureStables";
 import ExposureProtocols from "./ExposureProtocols";
 import getNetworkId from '../../utils/getNetworkId';
+import {APP_STATS_BOT_URL, APP_STATS_BOT_PORT, APP_NETWORK_ID} from '../../constants';
 import { useDispatch } from 'react-redux';
 import { setAllGroStats, removeAllGroStats } from '../../store/action/dashboard';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
@@ -39,10 +40,9 @@ const Dashboard = () => {
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [isError, setIsError] = React.useState<String>('');
-    const URL = `${process.env.REACT_APP_STATS_BOT_URL}:${process.env.REACT_APP_STATS_BOT_PORT}/database/gro_stats`;
-    const networkId = (process.env.REACT_APP_NETWORK_ID)
-        ? parseInt(process.env.REACT_APP_NETWORK_ID)
-        : 0;
+
+    const URL = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/gro_stats`;
+    const networkId = APP_NETWORK_ID || 0;
 
     React.useEffect(() => {
         fetchGroStats();
