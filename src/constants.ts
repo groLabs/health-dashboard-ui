@@ -24,7 +24,7 @@ export const APP_STATS_BOT_URL =
     (ETHEREUM_NETWORK === NETWORK.MAINNET)
         ? 'http://msb1.data.gro.xyz'
         : (ETHEREUM_NETWORK === NETWORK.ROPSTEN)
-            ? 'http://msb1.data.gro.xyz'
+            ? 'https://ajj49or3nh.execute-api.eu-west-2.amazonaws.com'
             : 'http://localhost';
 
 export const APP_STATS_BOT_PORT = 3010;
