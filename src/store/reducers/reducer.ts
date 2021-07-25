@@ -14,6 +14,7 @@ export interface RootState {
         exposureStables: any[],
         exposureProtocols: any[],
         config: any,
+        loadDate: string,
     },
 };
 

@@ -20,7 +20,8 @@ const initialState = {
         strategies: [],
         exposureStables: [],
         exposureProtocols: [],
-        config: {}
+        config: {},
+        loadDate: '',
 }
 
 const setAllGroStats = (state: State, action: Action) => {
@@ -38,6 +39,7 @@ const setAllGroStats = (state: State, action: Action) => {
             exposureStables: action.exposureStables,
             exposureProtocols: action.exposureProtocols,
             config: action.config,
+            loadDate: action.loadDate,
         } };
     return newState;
 }
@@ -46,7 +48,6 @@ const removeAllGroStats = (state: State, action: Action) => {
     state = initialState;
     return state;
 };
-
 
 const reducer = (state = initialState, action: Action) => {
     switch (action.type) {

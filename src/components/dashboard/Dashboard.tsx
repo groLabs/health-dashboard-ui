@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import moment from "moment";
 import Header from "./Header";
 import Tvl from "./Tvl";
 import Apy from "./Apy";
@@ -72,6 +73,7 @@ const Dashboard = () => {
                     exposureStables: res.data.exposureStables,
                     exposureProtocols: res.data.exposureProtocols,
                     config: res.data.config,
+                    loadDate: moment.utc(),
                 }));
             }).catch(err => {
                 console.log('Error in Dashboard.tsx -> fetchGroStats(): ', err);

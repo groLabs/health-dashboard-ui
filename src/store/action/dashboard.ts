@@ -13,6 +13,7 @@ export const setAllGroStats = (groStats: any) => ({
     exposureStables: groStats.exposureStables,
     exposureProtocols: groStats.exposureProtocols,
     config: groStats.config,
+    loadDate: groStats.loadDate,
 });
 
 export const removeAllGroStats = () => ({
