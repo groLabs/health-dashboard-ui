@@ -22,7 +22,7 @@ export const ETHEREUM_NETWORK = process.env.REACT_APP_ETHEREUM_NETWORK || NETWOR
 
 export const APP_STATS_BOT_URL =
     (ETHEREUM_NETWORK === NETWORK.MAINNET)
-        ? 'http://msb1.data.gro.xyz'
+        ? 'https://h4sk4iwj75.execute-api.eu-west-2.amazonaws.com'
         : (ETHEREUM_NETWORK === NETWORK.ROPSTEN)
             ? 'https://ajj49or3nh.execute-api.eu-west-2.amazonaws.com'
             : 'http://localhost';

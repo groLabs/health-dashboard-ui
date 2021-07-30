@@ -29,7 +29,7 @@ const Header = (props: Props) => {
                 <div className={styles.subheader}>
                     Load Date: {(loadDate)
                         ? <span> 
-                            <span> {moment.utc(loadDate).format('DD/MM/YYYY HH:mm:ss')} </span>
+                            <span> {moment.utc(loadDate).format('DD/MM/YYYY HH:mm:ss')} UTC </span>
                             <span className={styles.timeAgo}> ({timeAgoLoadDate}) </span>
                         </span>
                         : ''
@@ -38,7 +38,7 @@ const Header = (props: Props) => {
                 <div className={styles.subheader}>
                     Data Date: {(config.current_date)
                         ? <span> 
-                            <span> {moment.utc(config.current_date).format('DD/MM/YYYY HH:mm:ss')} </span>
+                            <span> {moment.utc(config.current_date).format('DD/MM/YYYY HH:mm:ss')} UTC </span>
                             <span className={styles.timeAgo}> ({timeAgoDateDate}) </span>
                         </span>
                         : ''
