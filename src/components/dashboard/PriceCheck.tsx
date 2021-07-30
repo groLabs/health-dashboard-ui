@@ -1,10 +1,8 @@
 import React from "react";
 import parser from '../../utils/parseGroStats';
-// import system from '../../data/system';
-//import lifeguard from '../../data/lifeguard';
+// import tvl from '../../data/tvl';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './Kpis';
-import { IDefault } from "../../interfaces/Dashboard";
 import { useTypedSelector } from '../../store/reducers/reducer';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,6 +13,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { IDefault } from "../../interfaces/Dashboard";
 
 
 const useStyles = makeStyles({
@@ -23,27 +22,26 @@ const useStyles = makeStyles({
     },
 });
 
-const System = () => {
+const PriceCheck = () => {
     const classes = useStyles();
-    const system = useTypedSelector(state => state.groStats.system);
-    const lifeguard = useTypedSelector(state => state.groStats.lifeguard);
+    const tvl = useTypedSelector(state => state.groStats.tvl);
     const [rows, setRows] = React.useState<IDefault[]>([]);
 
     React.useEffect(() => {
         const tempRows = [
-            parser(system, 'total_amount', 'system - amount', 'amount'),
-            parser(system, 'total_share', 'system - share', 'percentage'),
-            parser(system, 'last3d_apy', 'system - last 3d APY', 'percentage'),
-            parser(lifeguard, 'amount', 'lifeguard - amount', 'amount'),
-            parser(lifeguard, 'share', 'lifeguard - share', 'percentage'),
-            parser(lifeguard, 'last3d_apy', 'lifeguard - last 3d APY', 'percentage'),
+            parser(tvl, 'tvl_pwrd', 'pwrd', 'amount'),
+            parser(tvl, 'tvl_gvt', 'gvt', 'amount'),
+            parser(tvl, 'tvl_total', 'total', 'amount'),
+            parser(tvl, 'util_ratio_limit_pwrd', 'util ratio limit pwrd', 'percentage'),
+            parser(tvl, 'util_ratio_limit_gvt', 'util ratio limit gvt', 'percentage'),
+            parser(tvl, 'util_ratio', 'util ratio total', 'percentage'),
         ];
         setRows(tempRows);
-    }, [system, lifeguard]);
+    }, [tvl]);
 
     return (
         <div className={styles.table}>
-            <div className={styles.title}> System </div>
+            <div className={styles.title}> Price Check </div>
             <TableContainer component={Paper}>
                 <Table className={classes.table} size="small" aria-label="a dense table">
                     <TableHead>
@@ -67,4 +65,4 @@ const System = () => {
     );
 }
 
-export default System;
+export default PriceCheck;
