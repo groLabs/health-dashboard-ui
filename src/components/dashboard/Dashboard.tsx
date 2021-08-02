@@ -12,9 +12,10 @@ import Reserves from "./Reserves";
 import ExposureStables from "./ExposureStables";
 import ExposureProtocols from "./ExposureProtocols";
 import getNetworkId from '../../utils/getNetworkId';
-import {APP_STATS_BOT_URL, APP_STATS_BOT_PORT, APP_NETWORK_ID} from '../../constants';
+import { APP_STATS_BOT_URL, APP_STATS_BOT_PORT, APP_NETWORK_ID } from '../../constants';
 import { useDispatch } from 'react-redux';
-import { setAllGroStats, removeAllGroStats } from '../../store/action/dashboard';
+import { setAllGroStats, removeAllGroStats } from '../../store/action/groStats';
+import { setPriceCheck, removePriceCheck } from '../../store/action/priceCheck';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import styles from './Dashboard.module.css';
@@ -44,50 +45,126 @@ const Dashboard = () => {
     const [isError, setIsError] = React.useState<String>('');
 
     const URL = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/gro_stats`;
+    const URL_PRICE_CHECK = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/price_check`;
     const networkId = APP_NETWORK_ID || 0;
 
     React.useEffect(() => {
-        fetchGroStats();
+        // fetchGroStats();
+        // fetchPriceCheck();
+        fetchAPI();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const fetchGroStats = async () => {
+    const fetchAPI = async () => {
         setIsLoading(true);
         setIsError('');
         dispatch(removeAllGroStats());
+        dispatch(removePriceCheck());
         if (networkId === 0) {
             setIsError(`Error reading blockchain network (id:${networkId}) => .env entry might be missing`);
             setIsLoading(false);
         } else {
-            await axios.get(URL, {
-                params: { network: getNetworkId(networkId) },
-            }).then(res => {
-                dispatch(setAllGroStats({
-                    tvl: res.data.tvl,
-                    apy1: res.data.apy1,
-                    apy2: res.data.apy2,
-                    lifeguard: res.data.lifeguard,
-                    system: res.data.system,
-                    vaults: res.data.vaults,
-                    reserves: res.data.reserves,
-                    strategies: res.data.strategies,
-                    exposureStables: res.data.exposureStables,
-                    exposureProtocols: res.data.exposureProtocols,
-                    config: res.data.config,
-                    loadDate: moment.utc(),
-                }));
-            }).catch(err => {
-                console.log('Error in Dashboard.tsx -> fetchGroStats(): ', err);
-                setIsError(`Error fetching gro stats from DB: ${err}`);
-            }).finally(() => {
-                setIsLoading(false);
-            });
+            await Promise.all([
+                axios.get(URL, {
+                    params: { network: getNetworkId(networkId) },
+                }).then(res => {
+                    dispatch(setAllGroStats({
+                        tvl: res.data.tvl,
+                        apy1: res.data.apy1,
+                        apy2: res.data.apy2,
+                        lifeguard: res.data.lifeguard,
+                        system: res.data.system,
+                        vaults: res.data.vaults,
+                        reserves: res.data.reserves,
+                        strategies: res.data.strategies,
+                        exposureStables: res.data.exposureStables,
+                        exposureProtocols: res.data.exposureProtocols,
+                        config: res.data.config,
+                        loadDate: moment.utc(),
+                    }));
+                }).catch(err => {
+                    console.log('Error in Dashboard.tsx -> fetchAPI(): ', err);
+                    setIsError(`Error fetching gro stats from DB: ${err}`);
+                })
+                ,
+                await axios.get(URL_PRICE_CHECK, {
+                    params: { network: getNetworkId(networkId) },
+                }).then(res => {
+                    dispatch(setPriceCheck({
+                        global: res.data.global,
+                        detail: res.data.detail,
+                    }));
+                }).catch(err => {
+                    console.log('Error in Dashboard.tsx -> fetchAPI(): ', err);
+                    setIsError(`Error fetching gro stats from DB: ${err}`);
+                })
+            ]);
+            setIsLoading(false);
         }
     }
 
+    // const fetchGroStats = async () => {
+    //     setIsLoading(true);
+    //     setIsError('');
+    //     dispatch(removeAllGroStats());
+    //     if (networkId === 0) {
+    //         setIsError(`Error reading blockchain network (id:${networkId}) => .env entry might be missing`);
+    //         setIsLoading(false);
+    //     } else {
+    //         await axios.get(URL, {
+    //             params: { network: getNetworkId(networkId) },
+    //         }).then(res => {
+    //             dispatch(setAllGroStats({
+    //                 tvl: res.data.tvl,
+    //                 apy1: res.data.apy1,
+    //                 apy2: res.data.apy2,
+    //                 lifeguard: res.data.lifeguard,
+    //                 system: res.data.system,
+    //                 vaults: res.data.vaults,
+    //                 reserves: res.data.reserves,
+    //                 strategies: res.data.strategies,
+    //                 exposureStables: res.data.exposureStables,
+    //                 exposureProtocols: res.data.exposureProtocols,
+    //                 config: res.data.config,
+    //                 loadDate: moment.utc(),
+    //             }));
+    //         }).catch(err => {
+    //             console.log('Error in Dashboard.tsx -> fetchGroStats(): ', err);
+    //             setIsError(`Error fetching gro stats from DB: ${err}`);
+    //         }).finally(() => {
+    //             setIsLoading(false);
+    //         });
+    //     }
+    // }
+
+    // const fetchPriceCheck = async () => {
+    //     // setIsLoading(true);
+    //     // setIsError('');
+    //     dispatch(removePriceCheck());
+    //     if (networkId === 0) {
+    //         // setIsError(`Error reading blockchain network (id:${networkId}) => .env entry might be missing`);
+    //         // setIsLoading(false);
+    //     } else {
+    //         await axios.get(URL_PRICE_CHECK, {
+    //             params: { network: getNetworkId(networkId) },
+    //         }).then(res => {
+    //             dispatch(setPriceCheck({
+    //                 global: res.data.global,
+    //                 detail: res.data.detail,
+    //             }));
+    //         }).catch(err => {
+    //             console.log('Error in Dashboard.tsx -> fetchGroStats(): ', err);
+    //             setIsError(`Error fetching price check from DB: ${err}`);
+    //         }).finally(() => {
+    //             // setIsLoading(false);
+    //         });
+    //     }
+    // }
+
     return (
         <div>
-            <Header onRefreshClick={() => fetchGroStats()} />
+            {/* <Header onRefreshClick={() => fetchGroStats()} /> */}
+            <Header onRefreshClick={() => fetchAPI()} />
             {(isError !== '')
                 ? <span className={styles.container + ' ' + styles.error}>
                     {isError}
@@ -105,7 +182,7 @@ const Dashboard = () => {
             <Vaults />
             <Reserves />
             <Strategies />
-            {/* <PriceCheck /> */}
+            <PriceCheck />
             <ExposureStables />
             <ExposureProtocols />
 

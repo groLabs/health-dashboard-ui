@@ -2,7 +2,7 @@ import NumberFormat from 'react-number-format';
 
 const sign = (value: number, dif: boolean) => (dif && value > 0) ? '+' : '';
 
-const Format = (rawValue: any, format: string, dif: boolean) => {
+export const Format = (rawValue: any, format: string, dif: boolean) => {
     try {
         if (rawValue === 'NA')
         return 'NA';
@@ -18,7 +18,7 @@ const Format = (rawValue: any, format: string, dif: boolean) => {
     } catch (err) {
         console.log('Error in Format.tsx:', err);
     }
-
 }
 
 export default Format;
+

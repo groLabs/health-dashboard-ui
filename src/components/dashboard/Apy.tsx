@@ -4,8 +4,8 @@ import parser from '../../utils/parseGroStats';
 //import apy2 from '../../data/apy2';
 // import system from '../../data/system';
 import styles from './Dashboard.module.css';
-import { showHeaders, showRows } from './Kpis';
-import { IDefault } from "../../interfaces/Dashboard";
+import { showHeaders, showRows } from './headers/groStats';
+import { IDefault } from "../../interfaces/groStats";
 import { useTypedSelector } from '../../store/reducers/reducer';
 
 import { makeStyles } from '@material-ui/core/styles';

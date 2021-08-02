@@ -1,6 +1,6 @@
 import React from "react";
 import TableCell from '@material-ui/core/TableCell';
-import format from '../../utils/Format';
+import format from '../../../utils/Format';
 
 
 export const showHeaders = () => (

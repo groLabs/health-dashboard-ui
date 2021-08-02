@@ -2,8 +2,8 @@ import React from "react";
 import parser from '../../utils/parseGroStats';
 // import protocols from '../../data/protocols';
 import styles from './Dashboard.module.css';
-import { showHeaders, showRows } from './Kpis';
-import { IExposure } from "../../interfaces/Dashboard";
+import { showHeaders, showRows } from './headers/groStats';
+import { IExposure } from "../../interfaces/groStats";
 import { useTypedSelector } from '../../store/reducers/reducer';
 
 import { makeStyles } from '@material-ui/core/styles';

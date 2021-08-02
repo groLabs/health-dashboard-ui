@@ -3,8 +3,8 @@ import parser from '../../utils/parseGroStats';
 // import system from '../../data/system';
 //import lifeguard from '../../data/lifeguard';
 import styles from './Dashboard.module.css';
-import { showHeaders, showRows } from './Kpis';
-import { IDefault } from "../../interfaces/Dashboard";
+import { showHeaders, showRows } from './headers/groStats';
+import { IDefault } from "../../interfaces/groStats";
 import { useTypedSelector } from '../../store/reducers/reducer';
 
 import { makeStyles } from '@material-ui/core/styles';

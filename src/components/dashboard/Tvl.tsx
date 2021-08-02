@@ -2,7 +2,7 @@ import React from "react";
 import parser from '../../utils/parseGroStats';
 // import tvl from '../../data/tvl';
 import styles from './Dashboard.module.css';
-import { showHeaders, showRows } from './Kpis';
+import { showHeaders, showRows } from './headers/groStats';
 import { useTypedSelector } from '../../store/reducers/reducer';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,7 +13,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { IDefault } from "../../interfaces/Dashboard";
+import { IDefault } from "../../interfaces/groStats";
 
 
 const useStyles = makeStyles({

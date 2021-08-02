@@ -16,6 +16,11 @@ export interface RootState {
         config: any,
         loadDate: string,
     },
+    priceCheck: {
+        global: any,
+        detail: any,
+    }
 };
+
 
 export const useTypedSelector = createSelectorHook<RootState>();
