@@ -1,6 +1,5 @@
 import React from "react";
 import parser from '../../utils/parsePriceCheck';
-// import tvl from '../../data/tvl';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './headers/priceCheck';
 import { useTypedSelector } from '../../store/reducers/reducer';
@@ -29,12 +28,10 @@ const PriceCheck = () => {
     const [rows, setRows] = React.useState<IPriceCheck[]>([]);
 
     React.useEffect(() => {
-        console.log('price check:', priceCheck);
         let tempRows = [];
         for (const item of priceCheck.detail) {
             tempRows.push(parser(item));
         }
-        // console.log(tempRows);
         setRows(tempRows);
     }, [priceCheck]);
 
@@ -43,16 +40,23 @@ const PriceCheck = () => {
             <div className={styles.title}> Price Check </div>
             <div className={styles.price_check_container}>
                 <div>
-                    <span className={styles.price_check_left_item}> safety check:</span>
-                    <span>{boolFormat(priceCheck.global.safety_check)} </span>
+                    <span className={styles.price_check_left_item}> Safety check:</span>
+                    <span>{(priceCheck.global)
+                        ? boolFormat(priceCheck.global.safety_check)
+                        : null}
+                    </span>
                 </div>
                 <div>
-                    <span className={styles.price_check_left_item}> safety check bound:</span>
-                    <span>{priceCheck.global.safety_check_bound} </span>
+                    <span className={styles.price_check_left_item}> Safety check bound BP:</span>
+                    <span>{(priceCheck.global)
+                        ? priceCheck.global.safety_check_bound
+                        : null} </span>
                 </div>
-                <div>
-                    <span className={styles.price_check_left_item}> block number:</span>
-                    <span>{priceCheck.global.block_number} </span>
+                <div className={styles.bottomMargin15px}>
+                    <span className={styles.price_check_left_item}> Block number:</span>
+                    <span>{(priceCheck.global)
+                        ? priceCheck.global.block_number
+                        : null} </span>
                 </div>
 
             </div>
@@ -60,28 +64,10 @@ const PriceCheck = () => {
                 <Table className={classes.table} size="small" aria-label="a dense table">
                     <TableHead>
                         <TableRow>
-                            <TableCell></TableCell>
+                        <TableCell style={{fontWeight:'bold', color: '#651C9C'}}>Pair</TableCell>
                             {showHeaders()}
                         </TableRow>
                     </TableHead>
-                    {/* {(rows.length > 0)
-                        ? <TableBody>
-                            {rows.map((row, index) => (
-                                <TableRow key={row.key} style={index % 2 ? { background: "#EBECF0" } : { background: "white" }}>
-                                    {showRows(row)}
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                        : <TableBody>   
-                        </TableBody>
-                    } */}
-                    {/* <TableBody>
-                        {rows.map((row, index) => (
-                            <TableRow key={row.key} style={index % 2 ? { background: "#EBECF0" } : { background: "white" }}>
-                                {showRows(row)}
-                            </TableRow>
-                        ))}
-                    </TableBody> */}
                     <TableBody>
                         {(rows.length > 0)
                             ? rows.map((row, index) => (
@@ -96,7 +82,6 @@ const PriceCheck = () => {
                 </Table>
             </TableContainer>
         </div>
-
     );
 }
 

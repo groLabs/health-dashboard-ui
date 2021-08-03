@@ -1,6 +1,5 @@
 import React from "react";
 import parser from '../../utils/parseGroStats';
-// import stables from '../../data/stables';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './headers/groStats';
 import { IExposure } from "../../interfaces/groStats";
@@ -44,7 +43,7 @@ const ExposureStables = () => {
                 <Table className={classes.table} size="small" aria-label="a dense table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>KPI</TableCell>
+                            <TableCell style={{fontWeight:'bold', color: '#651C9C'}}>Stablecoin</TableCell>
                             {showHeaders()}
                         </TableRow>
                     </TableHead>

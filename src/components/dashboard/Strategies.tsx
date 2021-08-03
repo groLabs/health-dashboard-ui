@@ -46,9 +46,9 @@ const Strategies = () => {
                 <Table className={classes.table} size="small" aria-label="a dense table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Vault</TableCell>
-                            <TableCell>Strategy</TableCell>
-                            <TableCell>KPI</TableCell>
+                            <TableCell style={{fontWeight:'bold', color: '#651C9C'}}>Vault</TableCell>
+                            <TableCell style={{fontWeight:'bold', color: '#651C9C'}}>Strategy</TableCell>
+                            <TableCell style={{fontWeight:'bold', color: '#651C9C'}}>KPI</TableCell>
                             {showHeaders()}
                         </TableRow>
                     </TableHead>

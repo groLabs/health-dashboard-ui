@@ -22,13 +22,16 @@
 }
 .price_check_left_item {
     display: inline-block;
-    width: 150px;
+    width: 155px;
 }
 .green {
     color: green;
-    font-weight: 600;
+    font-weight: 800;
 }
 .red {
     color: red;
-    font-weight: 600;
+    font-weight: 800;
+}
+.bottomMargin15px {
+    margin-bottom: 15px;
 }

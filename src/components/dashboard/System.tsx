@@ -1,7 +1,5 @@
 import React from "react";
 import parser from '../../utils/parseGroStats';
-// import system from '../../data/system';
-//import lifeguard from '../../data/lifeguard';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './headers/groStats';
 import { IDefault } from "../../interfaces/groStats";

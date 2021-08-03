@@ -1,6 +1,5 @@
 import React from "react";
 import parser from '../../utils/parseGroStats';
-// import reserves from '../../data/reserves';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './headers/groStats';
 import { IReserve } from "../../interfaces/groStats";
@@ -45,9 +44,9 @@ const Reserves = () => {
                 <Table className={classes.table} size="small" aria-label="a dense table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Vault</TableCell>
-                            <TableCell>Reserve</TableCell>
-                            <TableCell>KPI</TableCell>
+                            <TableCell style={{fontWeight:'bold', color: '#651C9C'}}>Vault</TableCell>
+                            <TableCell style={{fontWeight:'bold', color: '#651C9C'}}>Reserve</TableCell>
+                            <TableCell style={{fontWeight:'bold', color: '#651C9C'}}>KPI</TableCell>
                             {showHeaders()}
                         </TableRow>
                     </TableHead>

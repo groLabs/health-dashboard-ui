@@ -1,8 +1,5 @@
 import React from "react";
 import parser from '../../utils/parseGroStats';
-//import apy1 from '../../data/apy1';
-//import apy2 from '../../data/apy2';
-// import system from '../../data/system';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './headers/groStats';
 import { IDefault } from "../../interfaces/groStats";

@@ -24,7 +24,6 @@ require('dotenv').config();
 const useStyles = makeStyles(() =>
     createStyles({
         root: {
-            // Improve scrollable dialog support.
             zIndex: 100,
             position: 'fixed',
             display: 'flex',
@@ -88,7 +87,6 @@ const Dashboard = () => {
                 axios.get(URL_PRICE_CHECK, {
                     params: { network: getNetworkId(networkId) },
                 }).then(res => {
-console.log('res PRICE check:', res)
                     dispatch(setPriceCheck({
                         global: res.data.global,
                         detail: res.data.detail,

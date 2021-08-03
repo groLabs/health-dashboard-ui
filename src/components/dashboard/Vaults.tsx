@@ -1,6 +1,5 @@
 import React from "react";
 import parser from '../../utils/parseGroStats';
-// import vaults from '../../data/vaults';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './headers/groStats';
 import { IVault } from "../../interfaces/groStats";
@@ -46,8 +45,8 @@ const Vaults = () => {
                 <Table className={classes.table} size="small" aria-label="a dense table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Vault</TableCell>
-                            <TableCell>KPI</TableCell>
+                            <TableCell style={{fontWeight:'bold', color: '#651C9C'}}>Vault</TableCell>
+                            <TableCell style={{fontWeight:'bold', color: '#651C9C'}}>KPI</TableCell>
                             {showHeaders()}
                         </TableRow>
                     </TableHead>

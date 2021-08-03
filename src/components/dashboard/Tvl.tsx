@@ -1,6 +1,5 @@
 import React from "react";
 import parser from '../../utils/parseGroStats';
-// import tvl from '../../data/tvl';
 import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './headers/groStats';
 import { useTypedSelector } from '../../store/reducers/reducer';
