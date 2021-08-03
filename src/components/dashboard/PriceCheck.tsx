@@ -29,7 +29,7 @@ const PriceCheck = () => {
     const [rows, setRows] = React.useState<IPriceCheck[]>([]);
 
     React.useEffect(() => {
-        console.log(priceCheck);
+        console.log('price check:', priceCheck);
         let tempRows = [];
         for (const item of priceCheck.detail) {
             tempRows.push(parser(item));
@@ -64,12 +64,34 @@ const PriceCheck = () => {
                             {showHeaders()}
                         </TableRow>
                     </TableHead>
-                    <TableBody>
+                    {/* {(rows.length > 0)
+                        ? <TableBody>
+                            {rows.map((row, index) => (
+                                <TableRow key={row.key} style={index % 2 ? { background: "#EBECF0" } : { background: "white" }}>
+                                    {showRows(row)}
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                        : <TableBody>   
+                        </TableBody>
+                    } */}
+                    {/* <TableBody>
                         {rows.map((row, index) => (
                             <TableRow key={row.key} style={index % 2 ? { background: "#EBECF0" } : { background: "white" }}>
                                 {showRows(row)}
                             </TableRow>
                         ))}
+                    </TableBody> */}
+                    <TableBody>
+                        {(rows.length > 0)
+                            ? rows.map((row, index) => (
+                                <TableRow key={row.key} style={index % 2 ? { background: "#EBECF0" } : { background: "white" }}>
+                                    {showRows(row)}
+                                </TableRow>
+
+                            ))
+                            : null
+                        }
                     </TableBody>
                 </Table>
             </TableContainer>

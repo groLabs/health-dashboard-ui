@@ -45,7 +45,7 @@ const Dashboard = () => {
     const [isError, setIsError] = React.useState<String>('');
 
     const URL = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/gro_stats`;
-    const URL_PRICE_CHECK = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/price_check`;
+    const URL_PRICE_CHECK = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/price_checkXX`;
     const networkId = APP_NETWORK_ID || 0;
 
     React.useEffect(() => {
@@ -88,6 +88,7 @@ const Dashboard = () => {
                 axios.get(URL_PRICE_CHECK, {
                     params: { network: getNetworkId(networkId) },
                 }).then(res => {
+console.log('res PRICE check:', res)
                     dispatch(setPriceCheck({
                         global: res.data.global,
                         detail: res.data.detail,
