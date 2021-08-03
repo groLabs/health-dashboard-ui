@@ -45,7 +45,7 @@ const Dashboard = () => {
     const [isError, setIsError] = React.useState<String>('');
 
     const URL = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/gro_stats`;
-    const URL_PRICE_CHECK = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/price_checkXX`;
+    const URL_PRICE_CHECK = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/price_check`;
     const networkId = APP_NETWORK_ID || 0;
 
     React.useEffect(() => {
