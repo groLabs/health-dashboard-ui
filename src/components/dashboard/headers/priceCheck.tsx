@@ -7,10 +7,10 @@ export const showHeaders = () => (
     < React.Fragment >
         <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>Curve</TableCell>
         <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>Curve Cache</TableCell>
-        <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>Δ Curve Cache BP</TableCell>
+        <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>Δ Curve Cache BPS</TableCell>
         <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>✔︎ Curve Cache</TableCell>
         <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>Chainlink</TableCell>
-        <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>Δ Chainlink BP</TableCell>
+        <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>Δ Chainlink BPS</TableCell>
         <TableCell align="right" style={{fontWeight:'bold', color: '#651C9C'}}>✔︎ Chainlink</TableCell>
     </React.Fragment >
 );

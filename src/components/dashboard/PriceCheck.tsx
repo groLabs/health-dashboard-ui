@@ -47,7 +47,7 @@ const PriceCheck = () => {
                     </span>
                 </div>
                 <div>
-                    <span className={styles.price_check_left_item}> Safety check bound BP:</span>
+                    <span className={styles.price_check_left_item}> Safety check bound BPS:</span>
                     <span>{(priceCheck.global)
                         ? priceCheck.global.safety_check_bound
                         : null} </span>
