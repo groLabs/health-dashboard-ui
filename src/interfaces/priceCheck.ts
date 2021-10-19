@@ -8,5 +8,4 @@ export interface IPriceCheck {
     chainlink_price: number,
     curve_chainlink_diff: number,
     curve_chainlink_check: boolean,
-    // chainlinkPrice: string; 
 }

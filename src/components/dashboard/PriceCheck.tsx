@@ -47,9 +47,15 @@ const PriceCheck = () => {
                     </span>
                 </div>
                 <div>
-                    <span className={styles.price_check_left_item}> Safety check bound BPS:</span>
+                    <span className={styles.price_check_left_item}> Oracle check tolerance:</span>
                     <span>{(priceCheck.global)
-                        ? priceCheck.global.safety_check_bound
+                        ? priceCheck.global.oracle_check_tolerance
+                        : null} </span>
+                </div>
+                <div>
+                    <span className={styles.price_check_left_item}> Curve check tolerance:</span>
+                    <span>{(priceCheck.global)
+                        ? priceCheck.global.curve_check_tolerance
                         : null} </span>
                 </div>
                 <div className={styles.bottomMargin15px}>
@@ -64,7 +70,7 @@ const PriceCheck = () => {
                 <Table className={classes.table} size="small" aria-label="a dense table">
                     <TableHead>
                         <TableRow>
-                        <TableCell style={{fontWeight:'bold', color: '#651C9C'}}>Pair</TableCell>
+                            <TableCell style={{ fontWeight: 'bold', color: '#651C9C' }}>Pair</TableCell>
                             {showHeaders()}
                         </TableRow>
                     </TableHead>
