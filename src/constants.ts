@@ -18,6 +18,8 @@ export enum NETWORK_ID {
     LOCAL = 3
 }
 
+export const APP_ELEVATED_FUNCTIONS = process.env.REACT_APP_ELEVATED_FUNCTIONS || 'no';
+
 export const ETHEREUM_NETWORK = process.env.REACT_APP_ETHEREUM_NETWORK || NETWORK.ROPSTEN;
 
 export const APP_STATS_BOT_URL =

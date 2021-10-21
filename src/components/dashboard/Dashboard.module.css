@@ -35,3 +35,6 @@
 .bottomMargin15px {
     margin-bottom: 15px;
 }
+.marginSides10px {
+    margin: 0x 10px 0 10px;
+}
