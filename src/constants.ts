@@ -41,5 +41,7 @@ export const APP_NETWORK_ID =
             ? NETWORK_ID.ROPSTEN
             : 0;
 
+export const EMPTY_OBJECT = {};
+export const EMPTY_ARRAY = [];
 
 

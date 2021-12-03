@@ -12,7 +12,13 @@ import Reserves from "./Reserves";
 import ExposureStables from "./ExposureStables";
 import ExposureProtocols from "./ExposureProtocols";
 import getNetworkId from '../../utils/getNetworkId';
-import { APP_STATS_BOT_URL, APP_STATS_BOT_PORT, APP_NETWORK_ID } from '../../constants';
+import {
+    APP_STATS_BOT_URL,
+    APP_STATS_BOT_PORT,
+    APP_NETWORK_ID,
+    EMPTY_OBJECT,
+    EMPTY_ARRAY
+} from '../../constants';
 import { useDispatch } from 'react-redux';
 import { setAllGroStats, removeAllGroStats } from '../../store/action/groStats';
 import { setPriceCheck, removePriceCheck } from '../../store/action/priceCheck';
@@ -44,6 +50,7 @@ const Dashboard = () => {
     const [isError, setIsError] = React.useState<String>('');
 
     const URL = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/gro_stats`;
+    // const URL = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/gro_stats_mc`;
     const URL_PRICE_CHECK = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/price_check`;
     const networkId = APP_NETWORK_ID || 0;
 
@@ -66,17 +73,51 @@ const Dashboard = () => {
                     params: { network: getNetworkId(networkId) },
                 }).then(res => {
                     dispatch(setAllGroStats({
-                        tvl: res.data.tvl,
-                        apy1: res.data.apy1,
-                        apy2: res.data.apy2,
-                        lifeguard: res.data.lifeguard,
-                        system: res.data.system,
-                        vaults: res.data.vaults,
-                        reserves: res.data.reserves,
-                        strategies: res.data.strategies,
-                        exposureStables: res.data.exposureStables,
-                        exposureProtocols: res.data.exposureProtocols,
-                        config: res.data.config,
+                        tvl: res.data.tvl
+                            ? res.data.tvl
+                            : EMPTY_OBJECT,
+                        tvl_avax: res.data.tvl_avax
+                            ? res.data.tvl_avax
+                            : EMPTY_OBJECT,
+                        apy1: res.data.apy1
+                            ? res.data.apy1
+                            : EMPTY_OBJECT,
+                        apy2: res.data.apy2
+                            ? res.data.apy2
+                            : EMPTY_OBJECT,
+                        lifeguard: res.data.lifeguard
+                            ? res.data.lifeguard
+                            : EMPTY_OBJECT,
+                        system: res.data.system
+                            ? res.data.system
+                            : EMPTY_OBJECT,
+                        vaults: res.data.vaults
+                            ? res.data.vaults
+                            : EMPTY_ARRAY,
+                        vaults_avax: res.data.vaults_avax
+                            ? res.data.vaults_avax
+                            : EMPTY_ARRAY,
+                        reserves: res.data.reserves
+                            ? res.data.reserves
+                            : EMPTY_ARRAY,
+                        reserves_avax: res.data.reserves_avax
+                            ? res.data.reserves_avax
+                            : EMPTY_ARRAY,
+                        strategies: res.data.strategies
+                            ? res.data.strategies
+                            : EMPTY_ARRAY,
+                        strategies_avax: res.data.strategies_avax
+                            ? res.data.strategies_avax
+                            : EMPTY_ARRAY,
+                        exposureStables: res.data.exposureStables
+                            ? res.data.exposureStables
+                            : EMPTY_ARRAY,
+                        exposureProtocols: res.data.exposureProtocols
+                            ? res.data.exposureProtocols
+                            : EMPTY_ARRAY,
+                        config: res.data.config
+                            ? res.data.config
+                            : EMPTY_OBJECT,
                         loadDate: moment.utc(),
                     }));
                 }).catch(err => {
@@ -114,6 +155,7 @@ const Dashboard = () => {
                     <CircularProgress />
                 </div>
                 : ''}
+            <h2 className={styles.title_section}> Ethereum </h2>
             <Tvl />
             <Apy />
             <System />
@@ -123,7 +165,7 @@ const Dashboard = () => {
             <PriceCheck />
             <ExposureStables />
             <ExposureProtocols />
-
+            <h2 className={styles.title_section}> Avalanche </h2>
         </div>
     )
 }
