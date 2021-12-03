@@ -3,12 +3,16 @@ import axios from "axios";
 import moment from "moment";
 import Header from "./Header";
 import Tvl from "./Tvl";
+import TvlAvax from "./TvlAvax";
 import Apy from "./Apy";
 import System from "./System";
 import Vaults from "./Vaults";
+import VaultsAvax from "./VaultsAvax";
 import Strategies from "./Strategies";
+import StrategiesAvax from "./StrategiesAvax";
 import PriceCheck from './PriceCheck';
 import Reserves from "./Reserves";
+import ReservesAvax from "./ReservesAvax";
 import ExposureStables from "./ExposureStables";
 import ExposureProtocols from "./ExposureProtocols";
 import getNetworkId from '../../utils/getNetworkId';
@@ -25,6 +29,8 @@ import { setPriceCheck, removePriceCheck } from '../../store/action/priceCheck';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import styles from './Dashboard.module.css';
+import avaxIcon from '../../assets/avalanche.png';
+import ethIcon from '../../assets/ethereum.png';
 require('dotenv').config();
 
 const useStyles = makeStyles(() =>
@@ -49,8 +55,8 @@ const Dashboard = () => {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [isError, setIsError] = React.useState<String>('');
 
-    const URL = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/gro_stats`;
-    // const URL = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/gro_stats_mc`;
+    // const URL = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/gro_stats`;
+    const URL = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/gro_stats_mc`;
     const URL_PRICE_CHECK = `${APP_STATS_BOT_URL}:${APP_STATS_BOT_PORT}/database/price_check`;
     const networkId = APP_NETWORK_ID || 0;
 
@@ -155,7 +161,10 @@ const Dashboard = () => {
                     <CircularProgress />
                 </div>
                 : ''}
-            <h2 className={styles.title_section}> Ethereum </h2>
+            <div className={styles.text_image}>
+                <div> <img src={ethIcon} alt='eth' className={styles.icons}/> </div>
+                <div className={styles.title_section}> Ethereum </div>
+            </div>
             <Tvl />
             <Apy />
             <System />
@@ -165,7 +174,14 @@ const Dashboard = () => {
             <PriceCheck />
             <ExposureStables />
             <ExposureProtocols />
-            <h2 className={styles.title_section}> Avalanche </h2>
+            <div className={styles.text_image}>
+                <div> <img src={avaxIcon} alt='avax' className={styles.icons}/> </div>
+                <div className={styles.title_section}> Avalanche </div>
+            </div>
+            <TvlAvax />
+            <VaultsAvax />
+            <ReservesAvax />
+            <StrategiesAvax />
         </div>
     )
 }

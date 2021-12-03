@@ -4,12 +4,24 @@
     justify-content: center;
 }
 .title_section {
-    margin: 0 0 0 10px
+    margin: 0 0 0 10px;
+    font-size: x-large;
+    font-weight: 600;
 }
 .title {
     margin: 0 0 10px 5px;
     font-size: large;
     font-weight: 600;
+}
+.text_image {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 15px;
+}
+.icons {
+    height: 35px;
+    width: 35px;
 }
 .table {
     margin: 15px 15px 45px 15px;
