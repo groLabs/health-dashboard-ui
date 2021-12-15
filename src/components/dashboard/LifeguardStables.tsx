@@ -29,7 +29,6 @@ const LifeguardStables = () => {
     React.useEffect(() => {
         let tempRows = [];
         for (const item of stables) {
-            console.log(item);
             tempRows.push(
                 parser(item, 'amount', 'amount', 'amount'),
             );
