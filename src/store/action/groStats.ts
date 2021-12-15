@@ -7,6 +7,7 @@ export const setAllGroStats = (groStats: any) => ({
     apy1: groStats.apy1,
     apy2: groStats.apy2,
     lifeguard: groStats.lifeguard,
+    lifeguardStables: groStats.lifeguardStables,
     system: groStats.system,
     vaults: groStats.vaults,
     vaults_avax: groStats.vaults_avax,

@@ -6,6 +6,7 @@ import Tvl from "./Tvl";
 import TvlAvax from "./TvlAvax";
 import Apy from "./Apy";
 import System from "./System";
+import LifeguardStables from "./LifeguardStables";
 import Vaults from "./Vaults";
 import VaultsAvax from "./VaultsAvax";
 import Strategies from "./Strategies";
@@ -94,6 +95,9 @@ const Dashboard = () => {
                         lifeguard: res.data.lifeguard
                             ? res.data.lifeguard
                             : EMPTY_OBJECT,
+                        lifeguardStables: res.data.lifeguardStables
+                            ? res.data.lifeguardStables
+                            : EMPTY_ARRAY,
                         system: res.data.system
                             ? res.data.system
                             : EMPTY_OBJECT,
@@ -162,12 +166,13 @@ const Dashboard = () => {
                 </div>
                 : ''}
             <div className={styles.text_image}>
-                <div> <img src={ethIcon} alt='eth' className={styles.icons}/> </div>
+                <div> <img src={ethIcon} alt='eth' className={styles.icons} /> </div>
                 <div className={styles.title_section}> Ethereum </div>
             </div>
             <Tvl />
             <Apy />
             <System />
+            <LifeguardStables />
             <Vaults />
             <Reserves />
             <Strategies />
@@ -175,7 +180,7 @@ const Dashboard = () => {
             <ExposureStables />
             <ExposureProtocols />
             <div className={styles.text_image}>
-                <div> <img src={avaxIcon} alt='avax' className={styles.icons}/> </div>
+                <div> <img src={avaxIcon} alt='avax' className={styles.icons} /> </div>
                 <div className={styles.title_section}> Avalanche </div>
             </div>
             <TvlAvax />

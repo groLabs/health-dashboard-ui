@@ -8,6 +8,7 @@ export interface RootState {
         apy1: any,
         apy2: any,
         lifeguard: any,
+        lifeguardStables: any[],
         system: any,
         vaults: any[],
         vaults_avax: any[],
