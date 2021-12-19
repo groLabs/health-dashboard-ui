@@ -12,10 +12,23 @@ const Header = (props: Props) => {
     const priceCheck = useTypedSelector(state => state.priceCheck.global);
     const loadDate = useTypedSelector(state => state.groStats.loadDate);
 
-
     const [timeAgoLoadDate, setTimeAgoLoadDate] = React.useState('');
     const [timeAgoDateDate, setTimeAgoDateDate] = React.useState('');
     const [timeAgoDateDatePriceCheck, setTimeAgoDateDatePriceCheck] = React.useState('');
+
+    const isDataNotUpdated = (last: moment.Moment) => {
+        try {
+            const now = moment.utc(loadDate);
+            const duration = moment.duration(now.diff(last));
+            const diff = duration.asMinutes();
+            console.log('diff', diff);
+            return (diff >= 30) ? true : false;
+        } catch(err) {
+            console.log(`Error at Header->isDataNotUpdated(): ${err}`);
+            return false;
+        }
+
+    }
 
     React.useEffect(() => {
         const intervalID = setInterval(() => {
@@ -52,7 +65,7 @@ const Header = (props: Props) => {
                     <div>
                         {(groStats && groStats.current_date)
                             ? <span> UTC:
-                                <span> {moment.utc(groStats.current_date).format('DD/MM/YYYY HH:mm:ss')}</span>
+                                <span className={(isDataNotUpdated(groStats.current_date) ? styles.red : '')}> {moment.utc(groStats.current_date).format('DD/MM/YYYY HH:mm:ss')} </span>
                                 <span className={styles.timeAgo}> ({timeAgoDateDate}) </span>
                                 <div>
                                     Unix: {groStats.current_timestamp}
