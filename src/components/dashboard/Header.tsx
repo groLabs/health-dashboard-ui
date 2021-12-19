@@ -21,7 +21,6 @@ const Header = (props: Props) => {
             const now = moment.utc(loadDate);
             const duration = moment.duration(now.diff(last));
             const diff = duration.asMinutes();
-            console.log('diff', diff);
             return (diff >= 30) ? true : false;
         } catch(err) {
             console.log(`Error at Header->isDataNotUpdated(): ${err}`);
