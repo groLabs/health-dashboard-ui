@@ -31,6 +31,15 @@ const TvlAvax = () => {
             parser(tvlAvax, 'labs_dai_vault', 'labs_dai_vault', 'amount'),
             parser(tvlAvax, 'labs_usdc_vault', 'labs_usdc_vault', 'amount'),
             parser(tvlAvax, 'labs_usdt_vault', 'labs_usdt_vault', 'amount'),
+            parser(tvlAvax, 'labs_dai_vault_1_5', 'labs_dai_vault_1_5', 'amount'),
+            parser(tvlAvax, 'labs_usdc_vault_1_5', 'labs_usdc_vault_1_5', 'amount'),
+            parser(tvlAvax, 'labs_usdt_vault_1_5', 'labs_usdt_vault_1_5', 'amount'),
+            parser(tvlAvax, 'labs_dai_vault_1_6', 'labs_dai_vault_1_6', 'amount'),
+            parser(tvlAvax, 'labs_usdc_vault_1_6', 'labs_usdc_vault_1_6', 'amount'),
+            parser(tvlAvax, 'labs_usdt_vault_1_6', 'labs_usdt_vault_1_6', 'amount'),
+            parser(tvlAvax, 'labs_dai_vault_1_7', 'labs_dai_vault_1_7', 'amount'),
+            parser(tvlAvax, 'labs_usdc_vault_1_7', 'labs_usdc_vault_1_7', 'amount'),
+            parser(tvlAvax, 'labs_usdt_vault_1_7', 'labs_usdt_vault_1_7', 'amount'),
             parser(tvlAvax, 'total', 'total', 'amount'),
         ];
         setRows(tempRows);
