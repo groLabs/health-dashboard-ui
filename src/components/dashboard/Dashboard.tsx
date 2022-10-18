@@ -6,7 +6,7 @@ import Tvl from "./Tvl";
 import TvlAvax from "./TvlAvax";
 import Apy from "./Apy";
 import System from "./System";
-import LifeguardStables from "./LifeguardStables";
+// import LifeguardStables from "./LifeguardStables";
 import Vaults from "./Vaults";
 import VaultsAvax from "./VaultsAvax";
 import Strategies from "./Strategies";
@@ -172,7 +172,7 @@ const Dashboard = () => {
             <Tvl />
             <Apy />
             <System />
-            <LifeguardStables />
+            {/* <LifeguardStables /> */}
             <Vaults />
             <Reserves />
             <Strategies />

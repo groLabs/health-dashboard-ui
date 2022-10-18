@@ -32,9 +32,9 @@ const System = () => {
             parser(system, 'total_amount', 'system - amount', 'amount'),
             parser(system, 'total_share', 'system - share', 'percentage'),
             parser(system, 'last3d_apy', 'system - last 3d APY', 'percentage'),
-            parser(lifeguard, 'amount', 'lifeguard - amount', 'amount'),
-            parser(lifeguard, 'share', 'lifeguard - share', 'percentage'),
-            parser(lifeguard, 'last3d_apy', 'lifeguard - last 3d APY', 'percentage'),
+            // parser(lifeguard, 'amount', 'lifeguard - amount', 'amount'),
+            // parser(lifeguard, 'share', 'lifeguard - share', 'percentage'),
+            // parser(lifeguard, 'last3d_apy', 'lifeguard - last 3d APY', 'percentage'),
         ];
         setRows(tempRows);
     }, [system, lifeguard]);
