@@ -4,7 +4,7 @@ import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './headers/groStats';
 import { IReserve } from "../../interfaces/groStats";
 import { useTypedSelector } from '../../store/reducers/reducer';
-
+// styles
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -28,13 +28,15 @@ const Reserves = () => {
 
     React.useEffect(() => {
         const tempRows = [];
-        for (const item of reserves) {
-            tempRows.push(
-                parser(item, 'amount', 'amount', 'amount'),
-                parser(item, 'share', 'share', 'percentage'),
-            );
+        if (reserves.length > 0) {
+            for (const item of reserves) {
+                tempRows.push(
+                    parser(item, 'amount', 'amount', 'amount'),
+                    parser(item, 'share', 'share', 'percentage'),
+                );
+            }
+            setRows(tempRows);
         }
-        setRows(tempRows);
     }, [reserves]);
 
     return (

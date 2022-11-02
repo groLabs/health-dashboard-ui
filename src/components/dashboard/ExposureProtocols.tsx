@@ -4,7 +4,7 @@ import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './headers/groStats';
 import { IExposure } from "../../interfaces/groStats";
 import { useTypedSelector } from '../../store/reducers/reducer';
-
+// styles
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -28,12 +28,14 @@ const ExposureProtocols = () => {
 
     React.useEffect(() => {
         const tempRows = [];
-        for (const item of protocols) {
-            tempRows.push(
-                parser(item, 'concentration', 'concentration', 'percentage'),
-            );
+        if (protocols.length > 0) {
+            for (const item of protocols) {
+                tempRows.push(
+                    parser(item, 'concentration', 'concentration', 'percentage'),
+                );
+            }
+            setRows(tempRows);
         }
-        setRows(tempRows);
     }, [protocols]);
 
     return (

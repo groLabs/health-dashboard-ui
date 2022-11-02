@@ -4,6 +4,7 @@ import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './headers/groStats';
 import { IVault } from "../../interfaces/groStats";
 import { useTypedSelector } from '../../store/reducers/reducer';
+// styles
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -27,14 +28,16 @@ const VaultsAvax = () => {
 
     React.useEffect(() => {
         const tempRows = [];
-        for (const item of vaultsAvax) {
-            tempRows.push(
-                parser(item, 'amount', 'amount', 'amount'),
-                parser(item, 'share', 'share', 'percentage'),
-                parser(item, 'last3d_apy', 'last3d_apy', 'percentage'),
-            );
+        if (vaultsAvax.length > 0) {
+            for (const item of vaultsAvax) {
+                tempRows.push(
+                    parser(item, 'amount', 'amount', 'amount'),
+                    parser(item, 'share', 'share', 'percentage'),
+                    parser(item, 'last3d_apy', 'last3d_apy', 'percentage'),
+                );
+            }
+            setRows(tempRows);
         }
-        setRows(tempRows);
     }, [vaultsAvax]);
 
     return (

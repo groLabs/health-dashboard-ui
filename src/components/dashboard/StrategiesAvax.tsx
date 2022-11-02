@@ -4,6 +4,7 @@ import styles from './Dashboard.module.css';
 import { showHeaders, showRows } from './headers/groStats';
 import { IStrategy } from "../../interfaces/groStats";
 import { useTypedSelector } from '../../store/reducers/reducer';
+// styles
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -27,18 +28,20 @@ const StrategiesAvax = () => {
 
     React.useEffect(() => {
         const tempRows = [];
-        for (const item of strategiesAvax) {
-            tempRows.push(
-                parser(item, 'amount', 'amount', 'amount'),
-                parser(item, 'share', 'share', 'percentage'),
-                parser(item, 'last3d_apy', 'last3d_apy', 'percentage'),
-                parser(item, 'all_time_apy', 'all time apy', 'percentage'),
-                parser(item, 'sharpe_ratio', 'sharpe ratio', 'percentage'),
-                parser(item, 'sortino_ratio', 'sortino ratio', 'percentage'),
-                parser(item, 'romad_ratio', 'romad ratio', 'percentage'),
-            );
+        if (strategiesAvax.length > 0) {
+            for (const item of strategiesAvax) {
+                tempRows.push(
+                    parser(item, 'amount', 'amount', 'amount'),
+                    parser(item, 'share', 'share', 'percentage'),
+                    parser(item, 'last3d_apy', 'last3d_apy', 'percentage'),
+                    parser(item, 'all_time_apy', 'all time apy', 'percentage'),
+                    parser(item, 'sharpe_ratio', 'sharpe ratio', 'percentage'),
+                    parser(item, 'sortino_ratio', 'sortino ratio', 'percentage'),
+                    parser(item, 'romad_ratio', 'romad ratio', 'percentage'),
+                );
+            }
+            setRows(tempRows);
         }
-        setRows(tempRows);
     }, [strategiesAvax]);
 
     return (
