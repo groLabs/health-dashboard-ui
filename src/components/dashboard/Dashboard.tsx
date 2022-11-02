@@ -36,7 +36,7 @@ import {
     createStyles,
 } from '@mui/styles';
 import { CircularProgress} from '@mui/material';
-require('dotenv').config();
+// require('dotenv').config();
 
 
 
