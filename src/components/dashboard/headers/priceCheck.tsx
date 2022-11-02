@@ -1,5 +1,5 @@
-import React from "react";
-import TableCell from '@material-ui/core/TableCell';
+import React from 'react';
+import { TableCell } from '@mui/material';
 import boolFormat from '../../../utils/boolFormat';
 
 

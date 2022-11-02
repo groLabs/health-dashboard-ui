@@ -1,21 +1,21 @@
-import React from "react";
-import axios from "axios";
-import moment from "moment";
-import Header from "./Header";
-import Tvl from "./Tvl";
-import TvlAvax from "./TvlAvax";
-import Apy from "./Apy";
-import System from "./System";
-// import LifeguardStables from "./LifeguardStables";
-import Vaults from "./Vaults";
-import VaultsAvax from "./VaultsAvax";
-import Strategies from "./Strategies";
-import StrategiesAvax from "./StrategiesAvax";
+import React from 'react';
+import axios from 'axios';
+import moment from 'moment';
+import Header from './Header';
+import Tvl from './Tvl';
+import TvlAvax from './TvlAvax';
+import Apy from './Apy';
+import System from './System';
+// import LifeguardStables from './LifeguardStables';
+import Vaults from './Vaults';
+import VaultsAvax from './VaultsAvax';
+import Strategies from './Strategies';
+import StrategiesAvax from './StrategiesAvax';
 import PriceCheck from './PriceCheck';
-import Reserves from "./Reserves";
-import ReservesAvax from "./ReservesAvax";
-import ExposureStables from "./ExposureStables";
-import ExposureProtocols from "./ExposureProtocols";
+import Reserves from './Reserves';
+import ReservesAvax from './ReservesAvax';
+import ExposureStables from './ExposureStables';
+import ExposureProtocols from './ExposureProtocols';
 import getNetworkId from '../../utils/getNetworkId';
 import {
     APP_STATS_BOT_URL,
@@ -27,12 +27,18 @@ import {
 import { useDispatch } from 'react-redux';
 import { setAllGroStats, removeAllGroStats } from '../../store/action/groStats';
 import { setPriceCheck, removePriceCheck } from '../../store/action/priceCheck';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import styles from './Dashboard.module.css';
 import avaxIcon from '../../assets/avalanche.png';
 import ethIcon from '../../assets/ethereum.png';
+// styles
+import {
+    makeStyles,
+    createStyles,
+} from '@mui/styles';
+import { CircularProgress} from '@mui/material';
 require('dotenv').config();
+
+
 
 const useStyles = makeStyles(() =>
     createStyles({

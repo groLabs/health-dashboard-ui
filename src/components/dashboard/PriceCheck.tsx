@@ -1,29 +1,34 @@
-import React from "react";
-import parser from '../../utils/parsePriceCheck';
+import React from 'react';
+import axios from 'axios';
+import { CSVLink } from 'react-csv';
 import styles from './Dashboard.module.css';
-import { showHeaders, showRows } from './headers/priceCheck';
-import { useTypedSelector } from '../../store/reducers/reducer';
 import boolFormat from '../../utils/boolFormat';
-
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import { IPriceCheck } from "../../interfaces/priceCheck";
-
-import axios from "axios";
+import parser from '../../utils/parsePriceCheck';
 import getNetworkId from '../../utils/getNetworkId';
+import { IPriceCheck } from '../../interfaces/priceCheck';
+import { useTypedSelector } from '../../store/reducers/reducer';
+import {
+    showRows,
+    showHeaders,
+} from './headers/priceCheck';
 import {
     APP_STATS_BOT_URL,
     APP_STATS_BOT_PORT,
     APP_NETWORK_ID,
     APP_ELEVATED_FUNCTIONS,
 } from '../../constants';
-import { CSVLink } from 'react-csv';
+// styles
+import { makeStyles } from '@mui/styles';
+import {
+    Paper,
+    Table,
+    TableRow,
+    TableHead,
+    TableBody,
+    TableCell,
+    TableContainer,
+} from '@mui/material';
+
 
 const useStyles = makeStyles({
     table: {

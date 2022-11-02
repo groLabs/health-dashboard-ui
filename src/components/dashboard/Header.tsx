@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import moment from 'moment';
 import styles from './Header.module.css';
 import getNetworkId from '../../utils/getNetworkId';
