@@ -59,6 +59,8 @@
     "@types/uuid": "^8.3.3"
   },
   "resolutions": {
-    "react-scripts/@svgr/webpack/@svgr/plugin-svgo/svgo/css-select/nth-check": "^2.0.1"
+    "react-scripts/@svgr/webpack/@svgr/plugin-svgo/svgo/css-select/nth-check": "^2.0.1",
+    "react-scripts/@pmmmwh/react-refresh-webpack-plugin/loader-utils": "^2.0.3",
+    "react-scripts/resolve-url-loader/adjust-sourcemap-loader/loader-utils": "^2.0.3"
   }
 }
